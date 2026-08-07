@@ -1,0 +1,275 @@
+.trending-section{
+
+    width:92%;
+    max-width:1450px;
+
+    margin:90px auto;
+
+}
+
+
+
+.section-heading{
+
+    text-align:center;
+
+    margin-bottom:55px;
+
+}
+
+
+
+.section-heading h2{
+
+    font-size:42px;
+
+    color:#1E3A8A;
+
+    font-weight:800;
+
+    margin-bottom:12px;
+
+}
+
+
+
+.section-heading p{
+
+    font-size:18px;
+
+    color:#64748B;
+
+}
+
+
+
+.destination-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(330px,1fr));
+
+    gap:35px;
+
+}
+
+
+
+.destination-card{
+
+    overflow:hidden;
+
+    border-radius:28px;
+
+    background:white;
+
+    box-shadow:
+    0 18px 45px rgba(37,99,235,.10);
+
+    transition:.35s;
+
+}
+
+
+
+.destination-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:
+    0 30px 60px rgba(37,99,235,.18);
+
+}
+
+
+
+.image-wrapper{
+
+    height:240px;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+
+
+.image-wrapper img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    transition:.6s;
+
+}
+
+
+
+.destination-card:hover img{
+
+    transform:scale(1.08);
+
+}
+
+
+
+.rating{
+
+    position:absolute;
+
+    top:18px;
+
+    left:18px;
+
+    background:white;
+
+    padding:8px 14px;
+
+    border-radius:50px;
+
+    font-weight:700;
+
+    color:#F59E0B;
+
+}
+
+
+
+.country-tag{
+
+    position:absolute;
+
+    right:18px;
+
+    top:18px;
+
+    max-width:calc(100% - 36px);
+
+    min-height:36px;
+
+    padding:6px 10px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:18px;
+
+    background:white;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    color:#1E3A8A;
+
+    text-align:center;
+
+}
+
+
+
+.destination-content{
+
+    padding:28px;
+
+}
+
+
+
+.destination-content h3{
+
+    margin:0;
+
+    color:#1E3A8A;
+
+    font-size:28px;
+
+}
+
+
+
+.country{
+
+    margin-top:8px;
+
+    color:#64748B;
+
+}
+
+
+
+.bottom-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-top:25px;
+
+}
+
+
+
+.bottom-row span{
+
+    color:#2563EB;
+
+    font-weight:700;
+
+}
+
+
+
+.bottom-row button{
+
+    border:none;
+
+    padding:12px 22px;
+
+    border-radius:14px;
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #2563EB,
+        #38BDF8
+    );
+
+    color:white;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+}
+
+
+
+.bottom-row button:hover{
+
+    transform:translateY(-3px);
+
+}
+
+
+
+@media(max-width:650px){
+
+    .destination-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}

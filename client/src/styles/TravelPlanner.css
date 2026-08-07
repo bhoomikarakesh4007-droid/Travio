@@ -1,0 +1,703 @@
+/* ====================================================
+               TRAVEL PLANNER LAYOUT BOARD
+==================================================== */
+
+.travel-planner-board {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+.planner-section {
+  animation: fadeUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.planner-intro-text {
+  font-size: 15px;
+  color: #64748B;
+  margin: -10px 0 25px 0;
+  line-height: 1.5;
+}
+
+/* ====================================================
+                REUSABLE GLASS CARDS
+==================================================== */
+
+.planner-glass-card {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 26px;
+  padding: 35px;
+  box-shadow: 0 20px 45px rgba(37, 99, 235, 0.04);
+  transition: all 0.3s ease;
+}
+
+.planner-glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 25px 55px rgba(37, 99, 235, 0.08);
+}
+
+/* ====================================================
+                  TRIP OVERVIEW CARD
+==================================================== */
+
+.trip-overview-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.overview-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  padding-bottom: 25px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.overview-title-block h3 {
+  font-size: 30px;
+  color: #1E3A8A;
+  font-weight: 800;
+  margin: 6px 0;
+}
+
+.overview-subtitle {
+  font-size: 16px;
+  color: #64748B;
+  margin: 0;
+  font-weight: 600;
+}
+
+.overview-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 12px;
+  background: #EFF6FF;
+  color: #2563EB;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 100px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.overview-weather-box {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 10px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(226, 232, 240, 0.6);
+}
+
+.overview-weather-box span {
+  font-size: 12px;
+  color: #64748B;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.overview-weather-box strong {
+  font-size: 18px;
+  color: #1E293B;
+  font-weight: 800;
+}
+
+.overview-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.stat-box {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 18px;
+  border: 1px solid rgba(226, 232, 240, 0.4);
+}
+
+.stat-icon {
+  color: #3B82F6;
+  flex-shrink: 0;
+}
+
+.stat-texts {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-texts span {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #64748B;
+  letter-spacing: 0.5px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.stat-texts strong {
+  font-size: 15px;
+  color: #1E293B;
+  font-weight: 700;
+}
+
+/* ====================================================
+                     HOTEL ACTIONS
+==================================================== */
+
+.planner-card-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 15px;
+  border-top: 1px solid rgba(226, 232, 240, 0.6);
+}
+
+.planner-secondary-btn {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #CBD5E1;
+  background: white;
+  color: #475569;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.planner-secondary-btn:hover {
+  background: #F8FAFC;
+  color: #1E293B;
+  border-color: #94A3B8;
+}
+
+/* ====================================================
+                   RESTAURANT SIGNATURES
+==================================================== */
+
+.signature-dishes-block {
+  margin-top: auto;
+  padding: 12px 0 16px 0;
+}
+
+.dishes-lbl {
+  display: flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #065F46;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+/* ====================================================
+                     BUDGET CARDS
+==================================================== */
+
+.budget-planner-view {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.budget-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.budget-item-card {
+  background: white;
+  border-radius: 20px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-sizing: border-box;
+}
+
+.budget-item-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.05);
+}
+
+.budget-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.budget-icon-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.budget-card-percent {
+  font-size: 12px;
+  font-weight: 700;
+  color: #64748B;
+}
+
+.budget-card-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #475569;
+  margin: 0 0 4px 0;
+}
+
+.budget-card-rate {
+  font-size: 11px;
+  color: #94A3B8;
+  margin: 0 0 15px 0;
+  line-height: 1.3;
+}
+
+.budget-card-value {
+  font-size: 22px;
+  font-weight: 800;
+  color: #1E293B;
+  margin-top: auto;
+}
+
+.budget-totals-container {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 25px;
+}
+
+.totals-card {
+  padding: 26px 30px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.02);
+}
+
+.daily-total-card {
+  background: #EFF6FF;
+  border: 1px solid rgba(37, 99, 235, 0.12);
+  color: #1E3A8A;
+}
+
+.trip-total-card {
+  background: linear-gradient(135deg, #1E3A8A, #0F172A);
+  border: 1px solid rgba(30, 58, 138, 0.15);
+  color: white;
+}
+
+.totals-content span {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #64748B;
+  letter-spacing: 0.5px;
+}
+
+.trip-total-card .totals-content span {
+  color: #93C5FD;
+}
+
+.totals-content h3 {
+  font-size: 28px;
+  font-weight: 800;
+  margin: 6px 0;
+}
+
+.totals-content h2 {
+  font-size: 36px;
+  font-weight: 800;
+  margin: 6px 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.totals-content p {
+  font-size: 12px;
+  color: #64748B;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.trip-total-card .totals-content p {
+  color: #94A3B8;
+}
+
+.totals-arrow-decor {
+  color: rgba(255, 255, 255, 0.15);
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+/* ====================================================
+                    ATTRACTIONS PILLS
+==================================================== */
+
+.attraction-details-row {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 15px;
+  border-top: 1px solid rgba(226, 232, 240, 0.6);
+  flex-wrap: wrap;
+}
+
+.detail-pill {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: #475569;
+  font-weight: 600;
+  background: #F1F5F9;
+  padding: 5px 10px;
+  border-radius: 100px;
+}
+
+/* ====================================================
+                    DAILY TIMELINE
+==================================================== */
+
+.daily-timeline-card {
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.timeline-flow {
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline-node {
+  display: flex;
+  gap: 25px;
+  position: relative;
+}
+
+.node-time {
+  width: 65px;
+  text-align: right;
+  font-size: 15px;
+  font-weight: 800;
+  color: #2563EB;
+  padding-top: 1px;
+  flex-shrink: 0;
+}
+
+.node-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.marker-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #2563EB;
+  border: 3px solid white;
+  box-shadow: 0 0 0 2px #2563EB;
+  z-index: 2;
+  flex-shrink: 0;
+}
+
+.marker-line {
+  width: 2px;
+  flex-grow: 1;
+  background: #E2E8F0;
+  margin: 6px 0;
+}
+
+.timeline-node:last-child .marker-line {
+  display: none;
+}
+
+.node-body {
+  padding-bottom: 25px;
+  flex-grow: 1;
+}
+
+.node-body h4 {
+  font-size: 16px;
+  font-weight: 800;
+  color: #1E293B;
+  margin: 0 0 4px 0;
+}
+
+.node-body p {
+  font-size: 13px;
+  color: #64748B;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ====================================================
+                      TRAVEL TIPS
+==================================================== */
+
+.travel-tips-card {
+  border-left: 5px solid #F59E0B;
+}
+
+.tips-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.tips-header h4 {
+  font-size: 18px;
+  font-weight: 800;
+  color: #1E293B;
+  margin: 0;
+}
+
+.tips-header p {
+  font-size: 13px;
+  color: #64748B;
+  margin: 3px 0 0 0;
+}
+
+.tips-bullet-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tip-bullet-item {
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+}
+
+.tip-bullet-num {
+  font-size: 12px;
+  font-weight: 800;
+  color: #D97706;
+  background: #FEF3C7;
+  padding: 3px 9px;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.tip-bullet-content p {
+  font-size: 14px;
+  color: #475569;
+  margin: 0;
+  line-height: 1.5;
+  font-weight: 600;
+}
+
+.tips-footer-notice {
+  display: flex;
+  gap: 10px;
+  font-size: 12px;
+  color: #64748B;
+  background: #F8FAFC;
+  padding: 14px 18px;
+  border-radius: 14px;
+  align-items: center;
+  border: 1px solid rgba(226, 232, 240, 0.5);
+}
+
+/* ====================================================
+                    LOCAL DIRECTORY
+==================================================== */
+
+.local-info-card {
+  border-left: 5px solid #10B981;
+}
+
+.local-info-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: #1E293B;
+  margin: 0 0 4px 0;
+}
+
+.local-info-subtitle {
+  font-size: 13px;
+  color: #64748B;
+  margin: 0 0 25px 0;
+}
+
+.local-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+}
+
+.info-detail-box {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.info-icon-wrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.info-text-wrapper span {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #64748B;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.info-text-wrapper strong {
+  font-size: 14px;
+  color: #1E293B;
+  font-weight: 700;
+  display: block;
+  margin-top: 1px;
+  line-height: 1.4;
+}
+
+/* ====================================================
+                    ACTION FOOTER
+==================================================== */
+
+.planner-action-footer {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  padding-top: 35px;
+  border-top: 1px solid rgba(226, 232, 240, 0.8);
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.action-btn-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 15px 30px;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: none;
+}
+
+.save-btn {
+  background: linear-gradient(135deg, #EF4444, #DC2626);
+  color: white;
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.15);
+}
+
+.save-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(239, 68, 68, 0.25);
+}
+
+.save-btn.active {
+  background: #B91C1C;
+}
+
+.share-btn {
+  background: white;
+  border: 1px solid #CBD5E1;
+  color: #475569;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+}
+
+.share-btn:hover {
+  background: #F8FAFC;
+  color: #1E293B;
+  transform: translateY(-2px);
+}
+
+.pdf-btn {
+  background: #F1F5F9;
+  color: #475569;
+}
+
+.pdf-btn:hover {
+  background: #E2E8F0;
+  color: #1E293B;
+  transform: translateY(-2px);
+}
+
+/* ====================================================
+                      RESPONSIVE
+==================================================== */
+
+@media(max-width: 900px) {
+  .budget-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .budget-totals-container {
+    grid-template-columns: 1fr;
+  }
+  .local-info-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .overview-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media(max-width: 600px) {
+  .budget-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .overview-stats-grid {
+    grid-template-columns: 1fr;
+  }
+  .overview-hero {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .overview-weather-box {
+    align-items: flex-start;
+    text-align: left;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .planner-glass-card {
+    padding: 22px;
+  }
+  .action-btn-pill {
+    width: 100%;
+    justify-content: center;
+  }
+}

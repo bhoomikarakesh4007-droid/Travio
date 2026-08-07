@@ -1,0 +1,118 @@
+.weather-card {
+  min-height: 100%;
+  padding: 48px; /* Increased from 30px */
+  border-radius: 28px; /* Increased from 24px */
+  color: white;
+  background: linear-gradient(135deg, #4f6cf5, #1e293b); /* Sleeker dark/blue modern look */
+  box-shadow: 0 20px 50px rgba(79, 108, 245, 0.15);
+  transition: all 0.3s ease;
+}
+
+.weather-card .section-kicker {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+
+.weather-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.weather-heading h2, .weather-card h2 {
+  font-size: 2.2rem; /* Increased from 1.35rem */
+  font-weight: 850;
+  margin-top: 10px;
+  letter-spacing: -0.03em;
+  color: white;
+}
+
+.weather-heading img {
+  width: 120px; /* Increased from 65px */
+  height: 120px; /* Increased from 65px */
+  margin: -20px -10px 0 0;
+  filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.25));
+}
+
+.weather-main {
+  display: flex;
+  align-items: center;
+  gap: 28px; /* Increased from 17px */
+  margin-top: 40px;
+}
+
+.weather-main > strong {
+  font-size: clamp(5.5rem, 9vw, 7.5rem); /* Increased from 5.2rem */
+  font-weight: 700;
+  line-height: 0.8;
+  letter-spacing: -0.06em;
+}
+
+.weather-main p {
+  text-transform: capitalize;
+  font-size: 1.35rem; /* Increased from 1rem */
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.weather-main span {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.95rem; /* Increased from 0.8rem */
+}
+
+.weather-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px; /* Increased from 12px */
+  margin-top: 50px;
+}
+
+.weather-info > div {
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 6px 12px; /* Increased from 4px 7px */
+  align-items: center;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem; /* Increased from 0.77rem */
+}
+
+.weather-info strong {
+  grid-column: 2;
+  color: white;
+  font-size: 1.3rem; /* Increased from 1rem */
+  font-weight: 750;
+}
+
+.weather-unavailable, .weather-loading {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  background: #1e293b;
+}
+
+.weather-unavailable p {
+  margin-top: 10px;
+  color: #cbd5e1;
+  line-height: 1.6;
+}
+
+.weather-shimmer {
+  width: 45%;
+  height: 12px;
+  align-self: center;
+  margin-left: auto;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #334155, #475569, #334155);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}

@@ -1,0 +1,742 @@
+/* ==========================================
+            TRAVIO SPLASH SCREEN
+========================================== */
+
+.splash-screen-bg{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:linear-gradient(
+        180deg,
+        #FFFFFF 0%,
+        #F8FBFF 45%,
+        #EAF6FF 100%
+    );
+
+    animation:bgFade 1s ease;
+
+    font-family:"Poppins",sans-serif;
+}
+
+/* ==========================================
+        FLOATING BACKGROUND
+========================================== */
+
+.splash-floating-circle{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    filter:blur(40px);
+
+    opacity:.45;
+
+    animation:floatSphere 14s ease-in-out infinite;
+}
+
+.circle-1{
+
+    width:320px;
+    height:320px;
+
+    background:#A5D8FF;
+
+    left:-80px;
+    top:-70px;
+}
+
+.circle-2{
+
+    width:240px;
+    height:240px;
+
+    background:#D8ECFF;
+
+    right:5%;
+    top:12%;
+
+    animation-delay:2s;
+}
+
+.circle-3{
+
+    width:380px;
+    height:380px;
+
+    background:#C7E7FF;
+
+    left:18%;
+    bottom:-120px;
+
+    animation-delay:4s;
+}
+
+.circle-4{
+
+    width:260px;
+    height:260px;
+
+    background:#E8F6FF;
+
+    right:-80px;
+    bottom:-60px;
+
+    animation-delay:6s;
+}
+
+/* ==========================================
+      AIRPLANE + GLOBE DECORATIONS
+========================================== */
+
+.splash-bg-decorations{
+
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+
+    overflow:hidden;
+}
+
+.plane,
+.globe{
+
+    position:absolute;
+
+    color:#2563EB;
+
+    opacity:.05;
+}
+
+.plane-1{
+
+    width:42px;
+
+    left:14%;
+
+    top:18%;
+
+    transform:rotate(-30deg);
+
+    animation:floatPlane 10s ease-in-out infinite;
+}
+
+.plane-2{
+
+    width:36px;
+
+    right:14%;
+
+    bottom:18%;
+
+    transform:rotate(18deg);
+
+    animation:floatPlane 12s ease-in-out infinite;
+}
+
+.globe-1{
+
+    width:48px;
+
+    right:12%;
+
+    top:15%;
+
+    animation:floatGlobe 11s ease-in-out infinite;
+}
+
+.globe-2{
+
+    width:52px;
+
+    left:10%;
+
+    bottom:15%;
+
+    animation:floatGlobe 13s ease-in-out infinite;
+}
+
+/* ==========================================
+          GLASS CARD
+========================================== */
+
+.splash-glass-card{
+    position:relative;
+    z-index:10;
+    padding:90px 140px;
+    min-width:min(86vw, 760px);
+    min-height:420px;
+    border-radius:36px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    background:rgba(255,255,255,.28);
+    backdrop-filter:blur(30px);
+    border:1px solid rgba(255,255,255,.75);
+    box-shadow:0 35px 90px rgba(37,99,235,.18), 0 15px 40px rgba(0,0,0,.08);
+    animation:cardEntrance .9s ease forwards, breathe 5s ease-in-out infinite;
+}
+/* ==========================================
+              BRAND
+========================================== */
+
+.splash-brand{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:24px;
+}
+
+/* ==========================================
+            LOGO GLASS
+========================================== */
+
+.logo-glass{
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:rgba(255,255,255,.45);
+    backdrop-filter:blur(25px);
+    border:1px solid rgba(255,255,255,.8);
+    box-shadow:0 25px 70px rgba(37,99,235,.25);
+    animation:logoEntrance .9s ease forwards;
+}
+.splash-logo-img{
+
+    width:85%;
+
+    height:auto;
+
+    user-select:none;
+
+    pointer-events:none;
+
+}
+/* ==========================================
+              TAGLINE
+========================================== */
+
+.splash-tagline{
+
+    font-family:"Plus Jakarta Sans",sans-serif;
+
+    font-size:52px;
+
+    font-weight:800;
+
+    color:#1E3A8A;
+
+    letter-spacing:.8px;
+
+    animation:textFade 1.2s ease forwards;
+
+    opacity:0;
+
+}
+/* ==========================================
+            LOADING BAR
+========================================== */
+/*
+.splash-loader-track{
+
+    width:380px;
+
+    height:5px;
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    background:rgba(37,99,235,.10);
+
+    position:relative;
+}
+
+.splash-loader-bar{
+
+    width:0%;
+
+    height:100%;
+
+    border-radius:30px;
+
+    background:linear-gradient(
+        90deg,
+        #2563EB,
+        #38BDF8
+    );
+
+    animation:loader 2s linear forwards;
+}*/
+
+/* ==========================================
+          BACKGROUND ANIMATIONS
+========================================== */
+
+@keyframes bgFade{
+
+    from{
+
+        opacity:0;
+    }
+
+    to{
+
+        opacity:1;
+    }
+
+}
+
+@keyframes floatSphere{
+
+    0%{
+
+        transform:
+        translateY(0px)
+        translateX(0px);
+
+    }
+
+    50%{
+
+        transform:
+        translateY(-25px)
+        translateX(18px);
+
+    }
+
+    100%{
+
+        transform:
+        translateY(0px)
+        translateX(0px);
+
+    }
+
+}
+
+@keyframes floatPlane{
+
+    0%{
+
+        transform:
+        translateY(0)
+        rotate(-30deg);
+
+    }
+
+    50%{
+
+        transform:
+        translateY(-14px)
+        rotate(-26deg);
+
+    }
+
+    100%{
+
+        transform:
+        translateY(0)
+        rotate(-30deg);
+
+    }
+
+}
+
+@keyframes floatGlobe{
+
+    0%{
+
+        transform:scale(1);
+
+    }
+
+    50%{
+
+        transform:scale(1.08);
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+    }
+
+}
+
+/* ==========================================
+          LOGO ENTRANCE
+========================================== */
+
+@keyframes logoEntrance{
+
+    0%{
+
+        opacity:0;
+
+        transform:
+        translateY(70px)
+        scale(.65);
+
+    }
+
+    100%{
+
+        opacity:1;
+
+        transform:
+        translateY(0)
+        scale(1);
+
+    }
+
+}
+
+/* ==========================================
+         CARD ENTRANCE
+========================================== */
+
+@keyframes cardEntrance{
+
+    from{
+
+        opacity:0;
+
+        transform:
+        translateY(30px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+        translateY(0);
+
+    }
+
+}
+
+/* ==========================================
+          TAGLINE ANIMATION
+========================================== */
+
+@keyframes textFade{
+
+    from{
+
+        opacity:0;
+
+        transform:
+        translateY(25px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+        translateY(0);
+
+    }
+
+}
+
+/* ==========================================
+            LOADER
+========================================== */
+
+@keyframes loader{
+
+    from{
+
+        width:0%;
+    }
+
+    to{
+
+        width:100%;
+    }
+
+}
+/* ==========================================
+        GLASS BREATHING ANIMATION
+========================================== */
+
+@keyframes breathe{
+
+    0%{
+
+        transform:scale(1);
+
+        box-shadow:
+        0 20px 60px rgba(37,99,235,.12),
+        0 10px 30px rgba(0,0,0,.05);
+
+    }
+
+    50%{
+
+        transform:scale(1.015);
+
+        box-shadow:
+        0 30px 80px rgba(37,99,235,.18),
+        0 16px 40px rgba(0,0,0,.08);
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+        box-shadow:
+        0 20px 60px rgba(37,99,235,.12),
+        0 10px 30px rgba(0,0,0,.05);
+
+    }
+
+}
+
+.splash-glass-card{
+
+    animation:
+        cardEntrance .9s ease,
+        breathe 5s ease-in-out infinite;
+}
+
+/* ==========================================
+            RESPONSIVE
+========================================== */
+
+@media (max-width:1024px){
+
+    .logo-glass{
+
+        width:105px;
+        height:105px;
+
+    }
+
+    .splash-tagline{
+
+        font-size:34px;
+
+    }
+
+    .splash-loader-track{
+
+        width:300px;
+
+    }
+
+    .splash-glass-card{
+
+        padding:45px 55px;
+
+    }
+
+}
+
+@media (max-width:768px){
+
+    .splash-brand{
+
+        flex-direction:column;
+
+        gap:18px;
+
+    }
+
+    .logo-glass{
+
+        width:95px;
+        height:95px;
+
+    }
+
+    .splash-tagline{
+
+        font-size:28px;
+
+        text-align:center;
+
+    }
+
+    .splash-loader-track{
+
+        width:240px;
+
+    }
+
+    .splash-glass-card{
+
+        width:90%;
+
+        padding:35px 28px;
+
+        border-radius:26px;
+
+    }
+
+}
+
+@media (max-width:480px){
+
+    .logo-glass{
+
+        width:80px;
+        height:80px;
+
+    }
+
+    .splash-tagline{
+
+        font-size:22px;
+
+        line-height:1.4;
+
+    }
+
+    .splash-loader-track{
+
+        width:190px;
+
+    }
+
+    .circle-1{
+
+        width:220px;
+        height:220px;
+
+    }
+
+    .circle-2{
+
+        width:160px;
+        height:160px;
+
+    }
+
+    .circle-3{
+
+        width:250px;
+        height:250px;
+
+    }
+
+    .circle-4{
+
+        width:170px;
+        height:170px;
+
+    }
+
+}
+
+/* ==========================================
+        EXTRA PREMIUM POLISH
+========================================== */
+
+.logo-glass::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:8px;
+
+    border-radius:50%;
+
+    border:1px solid rgba(255,255,255,.45);
+
+    pointer-events:none;
+
+}
+
+.logo-glass::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:65%;
+
+    height:65%;
+
+    border-radius:50%;
+
+    background:radial-gradient(
+        rgba(255,255,255,.35),
+        transparent
+    );
+
+    filter:blur(18px);
+
+    z-index:-1;
+
+}
+
+/* ==========================================
+      SMOOTH PAGE FADE OUT
+========================================== */
+
+.splash-screen-bg.fade-out{
+
+    animation:
+        pageFade .45s ease forwards;
+
+}
+
+@keyframes pageFade{
+
+    from{
+
+        opacity:1;
+
+        transform:scale(1);
+
+    }
+
+    to{
+
+        opacity:0;
+
+        transform:scale(1.02);
+
+    }
+
+}
+
+/* ==========================================
+       HIDE DECORATIONS ON SMALL DEVICES
+========================================== */
+
+@media (max-width:768px){
+
+    .plane,
+    .globe{
+
+        opacity:.025;
+
+    }
+
+}
+
+/* ==========================================
+            END OF FILE
+========================================== */

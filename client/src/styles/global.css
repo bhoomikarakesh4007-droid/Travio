@@ -1,0 +1,128 @@
+*{
+
+margin:0;
+
+padding:0;
+
+box-sizing:border-box;
+
+}
+
+html{
+
+scroll-behavior:smooth;
+
+}
+
+body{
+
+font-family:"Poppins",sans-serif;
+
+background:var(--background);
+
+color:var(--text);
+
+overflow-x:hidden;
+
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+button:active {
+  transform: scale(0.96) !important;
+}
+
+button:focus-visible, 
+input:focus-visible, 
+textarea:focus-visible,
+a:focus-visible {
+  outline: 3px solid #2563eb;
+  outline-offset: 2px;
+}
+
+input {
+  font-family: inherit;
+  outline: none;
+}
+
+img{
+
+display:block;
+
+max-width:100%;
+
+}
+
+a{
+
+text-decoration:none;
+
+color:inherit;
+
+}
+
+.glass{
+
+background:var(--glass);
+
+backdrop-filter:blur(22px);
+
+border:1px solid var(--glass-border);
+
+box-shadow:var(--shadow-md);
+
+border-radius:var(--radius-lg);
+
+}
+
+.section{
+
+padding:80px 6%;
+
+}
+
+.title{
+
+font-size:48px;
+
+font-weight:800;
+
+color:var(--primary-dark);
+
+}
+
+.subtitle {
+  font-size: 18px;
+  color: var(--text-light);
+  margin-top: 10px;
+}
+
+/* Page Navigation Smooth Transitions */
+.home-page,
+.preferences-page,
+.results-page,
+.details-page,
+.itinerary-page,
+.packing-page,
+.concierge-page,
+.profile-page,
+.wishlist-page,
+.assistant-page,
+.share-page {
+  animation: pageFadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,222 @@
+.dep-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeInDep 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dep-modal-card {
+  width: 90%;
+  max-width: 480px;
+  max-height: 85vh;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 
+              inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+  border-radius: 24px;
+  padding: 32px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  animation: scaleUpDep 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+body.dark-theme .dep-modal-card {
+  background: rgba(30, 41, 59, 0.85);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  color: #f8fafc;
+}
+
+.dep-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.05);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: #475569;
+  transition: all 0.2s ease;
+}
+
+body.dark-theme .dep-modal-close {
+  background: rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+}
+
+.dep-modal-close:hover {
+  background: rgba(0, 0, 0, 0.1);
+  transform: rotate(90deg);
+}
+
+body.dark-theme .dep-modal-close:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.dep-modal-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.dep-modal-icon {
+  font-size: 40px;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.dep-modal-header h2 {
+  font-size: 22px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.5px;
+}
+
+body.dark-theme .dep-modal-header h2 {
+  color: #f8fafc;
+}
+
+.dep-modal-header p {
+  font-size: 14px;
+  color: #475569;
+  margin: 0;
+  line-height: 1.5;
+}
+
+body.dark-theme .dep-modal-header p {
+  color: #94a3b8;
+}
+
+.dep-modal-body {
+  overflow-y: auto;
+  flex: 1;
+  padding-right: 4px;
+}
+
+/* Custom Scrollbar */
+.dep-modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dep-modal-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dep-modal-body::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+}
+
+body.dark-theme .dep-modal-body::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.dep-cities-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dep-city-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+body.dark-theme .dep-city-item {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.dep-city-item:hover {
+  background: #f1f5f9;
+  border-color: rgba(37, 99, 235, 0.2);
+  transform: translateX(4px);
+}
+
+body.dark-theme .dep-city-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+.dep-city-item.selected {
+  background: rgba(37, 99, 235, 0.08);
+  border-color: #2563eb;
+}
+
+body.dark-theme .dep-city-item.selected {
+  background: rgba(99, 102, 241, 0.12);
+  border-color: #6366f1;
+}
+
+.dep-city-flag {
+  font-size: 24px;
+  margin-right: 16px;
+}
+
+.dep-city-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.dep-city-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+body.dark-theme .dep-city-name {
+  color: #f8fafc;
+}
+
+.dep-city-country {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+body.dark-theme .dep-city-country {
+  color: #94a3b8;
+}
+
+.dep-city-check {
+  color: #2563eb;
+  margin-left: 12px;
+}
+
+body.dark-theme .dep-city-check {
+  color: #6366f1;
+}
+
+@keyframes fadeInDep {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleUpDep {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}

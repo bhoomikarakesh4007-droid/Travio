@@ -1,0 +1,226 @@
+/* ==========================================
+            ATLAS FLOATING COMPANION
+========================================== */
+
+.atlas-button-container {
+    position: fixed;
+    width: 115px;
+    height: 115px;
+    z-index: 998; /* Under the Navbar (1000) and same/under Chat Panel (999) */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: grab;
+    user-select: none;
+}
+
+.atlas-button-container:active {
+    cursor: grabbing;
+}
+
+.atlas-floating-button {
+    width: 115px;
+    height: 115px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 15px 35px rgba(37, 99, 235, 0.15), 
+                inset 0 1px 2px rgba(255, 255, 255, 0.25),
+                0 0 15px rgba(96, 165, 250, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    outline: none;
+    padding: 0;
+    overflow: visible; /* Allow thruster glow and particles to overflow */
+}
+
+/* Hover effects */
+.atlas-floating-button:hover {
+    transform: scale(1.08);
+    background: rgba(255, 255, 255, 0.22);
+    border-color: rgba(255, 255, 255, 0.65);
+    box-shadow: 0 20px 45px rgba(37, 99, 235, 0.25), 
+                inset 0 1px 3px rgba(255, 255, 255, 0.4),
+                0 0 25px rgba(96, 165, 250, 0.25);
+}
+
+.atlas-floating-button:active {
+    transform: scale(0.95);
+}
+
+/* ==========================================
+            CUSTOM COMPANION ANIMATIONS
+========================================== */
+
+/* Gentle Floating Idle with subtle rotation */
+.companion-robot {
+    transform-origin: center bottom;
+    animation: companion-float 4.5s ease-in-out infinite;
+}
+
+/* Head Tilt on Hover */
+.companion-head {
+    transform-origin: 50px 41px;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.atlas-button-container:hover .companion-head {
+    transform: rotate(6deg) translateY(-1px);
+}
+
+/* Eye Blink Animation */
+.companion-eye {
+    transform-origin: center;
+    animation: companion-blink 5s ease-in-out infinite;
+}
+
+.atlas-button-container:hover .companion-eye {
+    animation: none; /* stop blinking on hover */
+    transform: scale(1.12);
+    fill: #93C5FD;
+}
+
+/* Antenna Glowing Orb */
+.companion-antenna-orb {
+    transform-origin: 50px 8px;
+    animation: companion-pulse 2s ease-in-out infinite;
+}
+
+/* Thruster Fire Pulsing */
+.companion-thruster-fire {
+    transform-origin: 50px 75px;
+    animation: companion-thrust 1.5s ease-in-out infinite;
+}
+
+/* Floating Thruster Flame Particles */
+.companion-thruster-particle {
+    transform-origin: center;
+    animation: companion-particle-drift 1.2s infinite linear;
+}
+
+/* Ambient Back Glow */
+.companion-ambient-glow {
+    transform-origin: 50px 45px;
+    animation: companion-glow-pulse 3.5s ease-in-out infinite;
+}
+
+/* Keyframes */
+@keyframes companion-float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-7px) rotate(1deg);
+    }
+}
+
+@keyframes companion-blink {
+    0%, 94%, 98%, 100% {
+        transform: scaleY(1);
+    }
+    96% {
+        transform: scaleY(0.1);
+    }
+}
+
+@keyframes companion-pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.8;
+        fill: #60A5FA;
+    }
+    50% {
+        transform: scale(1.25);
+        opacity: 1;
+        fill: #93C5FD;
+    }
+}
+
+@keyframes companion-thrust {
+    0%, 100% {
+        transform: scaleY(0.8) scaleX(0.95);
+        opacity: 0.7;
+    }
+    50% {
+        transform: scaleY(1.2) scaleX(1.05);
+        opacity: 0.95;
+    }
+}
+
+@keyframes companion-particle-drift {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(8px) scale(0.3);
+        opacity: 0;
+    }
+}
+
+@keyframes companion-glow-pulse {
+    0%, 100% {
+        opacity: 0.45;
+        transform: scale(0.95);
+    }
+    50% {
+        opacity: 0.75;
+        transform: scale(1.05);
+    }
+}
+
+/* ==========================================
+            TOOLTIP
+========================================== */
+.atlas-tooltip {
+    position: absolute;
+    right: 130px; /* Adjusted offset for 115px button */
+    top: 50%;
+    transform: translateY(-50%) translateX(10px);
+    background: rgba(30, 41, 59, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: white;
+    padding: 8px 14px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 20px rgba(30, 41, 59, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.atlas-tooltip::after {
+    content: '';
+    position: absolute;
+    right: -5px;
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+    width: 10px;
+    height: 10px;
+    background: rgba(30, 41, 59, 0.85);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.atlas-button-container:hover .atlas-tooltip {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+}
+
+.atlas-button-container.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.5);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}

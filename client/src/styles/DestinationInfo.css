@@ -1,0 +1,272 @@
+/* Destination Information Section Layout */
+.destination-info-section {
+  width: min(1160px, calc(100% - 48px));
+  margin-inline: auto;
+  margin-top: 56px;
+  padding-bottom: 40px;
+}
+
+.dest-info-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+/* Base card layout */
+.info-card {
+  border-radius: var(--radius-lg);
+  padding: clamp(20px, 3.5vw, 32px);
+  margin-bottom: 24px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(255, 255, 255, 0.85);
+}
+
+.info-card:last-child {
+  margin-bottom: 0;
+}
+
+/* Titles and Headers */
+.card-title {
+  font-size: 1.45rem;
+  font-weight: 750;
+  color: var(--primary-dark);
+  margin-bottom: 18px;
+  letter-spacing: -0.02em;
+}
+
+.card-title-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.45rem;
+  font-weight: 750;
+  color: var(--primary-dark);
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+
+.card-subtitle {
+  color: var(--text-light);
+  font-size: 0.94rem;
+  margin-bottom: 20px;
+}
+
+.title-icon-inline {
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+.text-yellow {
+  color: #d97706 !important;
+}
+
+.text-green {
+  color: #16a34a !important;
+}
+
+.text-red {
+  color: #dc2626 !important;
+}
+
+/* About Paragraphs */
+.about-text-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.about-paragraph {
+  color: var(--text-light);
+  line-height: 1.75;
+  font-size: 0.98rem;
+}
+
+/* Food Chips Section */
+.food-chips-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.food-chip {
+  display: flex;
+  align-items: center;
+  padding: 10px 18px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 4px 12px rgba(31, 38, 135, 0.02);
+  transition: all 0.2s ease;
+}
+
+.food-chip span {
+  font-size: 0.92rem;
+  font-weight: 650;
+  color: var(--text);
+}
+
+.food-chip:hover {
+  transform: translateY(-2px) scale(1.03);
+  background: rgba(255, 255, 255, 0.85);
+  border-color: var(--primary-light);
+  box-shadow: 0 8px 16px rgba(37, 99, 235, 0.08);
+}
+
+/* Travel Tips Section */
+.tips-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.tip-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  transition: background-color 0.2s ease;
+}
+
+.tip-item:hover {
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.tip-number {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--primary);
+  background: rgba(37, 99, 235, 0.09);
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-family: monospace;
+  flex-shrink: 0;
+}
+
+.tip-text {
+  font-size: 0.94rem;
+  line-height: 1.55;
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* Sidebar Essential Stats Details */
+.sidebar-card {
+  height: 100%;
+}
+
+.sidebar-stats-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.7);
+}
+
+.sidebar-stats-list > .stat-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.stat-row-half-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.7);
+}
+
+.stat-row-half-grid > .stat-row {
+  border-bottom: none;
+}
+
+.stat-icon-wrapper {
+  color: var(--primary);
+  background: rgba(37, 99, 235, 0.08);
+  padding: 10px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.stat-row:hover .stat-icon-wrapper {
+  background: rgba(37, 99, 235, 0.14);
+  transform: scale(1.05);
+}
+
+.stat-data {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.stat-label {
+  font-size: 0.72rem;
+  color: var(--text-light);
+  text-transform: uppercase;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+}
+
+.stat-val {
+  font-size: 0.94rem;
+  color: var(--text);
+  font-weight: 650;
+  line-height: 1.4;
+}
+
+.emergency-val {
+  font-weight: 800;
+  color: #dc2626;
+}
+
+/* Responsive Rules */
+@media (max-width: 960px) {
+  .dest-info-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .destination-info-section {
+    width: min(100% - 30px, 1160px);
+  }
+}
+
+@media (max-width: 480px) {
+  .stat-row-half-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  
+  .stat-row-half-grid > .stat-row {
+    border-bottom: 1px solid rgba(226, 232, 240, 0.7);
+  }
+  
+  .stat-row-half-grid > .stat-row:last-child {
+    border-bottom: none;
+  }
+  
+  .food-chips-container {
+    gap: 8px;
+  }
+  
+  .food-chip {
+    padding: 8px 14px;
+  }
+}

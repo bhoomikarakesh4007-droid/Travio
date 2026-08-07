@@ -1,0 +1,1473 @@
+/* 1. Interactive World Globe Section - Detailed High-Resolution Theme */
+.globe-banner-section {
+  position: relative;
+  width: 100%;
+  padding: 56px 0 76px 0; /* Expanded bottom padding to accommodate silhouettes */
+  overflow: hidden;
+  background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 50%, #f0fdf4 100%);
+  border-bottom: 1px solid rgba(14, 165, 233, 0.1);
+  text-align: center;
+  z-index: 10;
+}
+
+/* Sunlight effect glow in corner */
+.globe-banner-section::before {
+  content: '';
+  position: absolute;
+  top: -15%;
+  left: -15%;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 70%);
+  filter: blur(55px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Drifting sky clouds */
+.sky-cloud {
+  position: absolute;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 26px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.cloud-1 {
+  top: 15%;
+  left: -10vw;
+  animation: driftCloud1 140s linear infinite;
+  font-size: 32px;
+}
+
+.cloud-2 {
+  top: 30%;
+  left: -15vw;
+  animation: driftCloud2 95s linear infinite;
+  font-size: 22px;
+}
+
+@keyframes driftCloud1 {
+  0% { transform: translateX(-10vw); }
+  100% { transform: translateX(110vw); }
+}
+
+@keyframes driftCloud2 {
+  0% { transform: translateX(-15vw); }
+  100% { transform: translateX(110vw); }
+}
+
+/* Flapping birds flock */
+.flying-birds {
+  position: absolute;
+  top: 20%;
+  left: -80px;
+  width: 90px;
+  height: 35px;
+  pointer-events: none;
+  z-index: 2;
+  animation: flyBirds 50s linear infinite;
+}
+
+@keyframes flyBirds {
+  0% { transform: translate(-10px, 0) scale(0.65); opacity: 0; }
+  10% { opacity: 0.65; }
+  90% { opacity: 0.65; }
+  100% { transform: translate(110vw, -80px) scale(0.65); opacity: 0; }
+}
+
+/* Hot air balloon */
+.hot-air-balloon {
+  position: absolute;
+  top: 45%;
+  right: -60px;
+  font-size: 28px;
+  opacity: 0.45;
+  pointer-events: none;
+  z-index: 2;
+  animation: floatBalloon 95s linear infinite;
+}
+
+@keyframes floatBalloon {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(-55vw, -35px); }
+  100% { transform: translate(-110vw, 0); }
+}
+
+.globe-banner-header {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 34px;
+}
+
+.globe-banner-header h1 {
+  font-size: clamp(30px, 4.5vw, 40px);
+  font-weight: 900;
+  color: #0369a1;
+  letter-spacing: -0.025em;
+  margin: 0;
+}
+
+.globe-banner-header p {
+  font-size: clamp(14px, 1.8vw, 16px);
+  color: #0f172a;
+  margin-top: 6px;
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+.globe-banner-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  z-index: 2;
+}
+
+/* Globe Container made 15-20% larger (from 380px to 430px) */
+.globe-sphere-wrapper {
+  position: relative;
+  width: 430px;
+  height: 430px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Subtle shadow directly beneath the globe */
+.globe-sphere-wrapper::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 10%;
+  width: 80%;
+  height: 15px;
+  background: radial-gradient(ellipse, rgba(3, 105, 161, 0.15) 0%, rgba(3, 105, 161, 0) 70%);
+  pointer-events: none;
+  z-index: 1;
+  filter: blur(4px);
+}
+
+.globe-sphere-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  box-shadow: 0 25px 65px rgba(14, 165, 233, 0.16), 0 0 50px rgba(56, 189, 248, 0.5);
+  overflow: hidden;
+  background: #0284c7;
+  border: 2px solid rgba(255, 255, 255, 0.55);
+  animation: floatGlobe 6s ease-in-out infinite;
+  z-index: 2;
+}
+
+@keyframes floatGlobe {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.globe-sphere-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Continuous Translation Globe Rotation */
+.globe-translation-group {
+  animation: globeRotate 50s linear infinite;
+  transform-origin: center;
+}
+
+/* Slow down rotation on hover */
+.globe-sphere-container:hover .globe-translation-group {
+  animation-duration: 110s;
+}
+
+@keyframes globeRotate {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-800px);
+  }
+}
+
+/* Vibrant Green Landmasses with High-Resolution crisp lines */
+.globe-continent {
+  fill: #22c55e;
+  stroke: rgba(255, 255, 255, 0.5);
+  stroke-width: 1px;
+  transition: fill 0.3s ease;
+}
+
+.globe-continent:hover {
+  fill: #16a34a;
+}
+
+.globe-pin-group {
+  cursor: pointer;
+  outline: none;
+}
+
+.globe-pin-group:focus-visible {
+  outline: 2.5px solid #0284c7;
+  outline-offset: 4px;
+}
+
+/* Premium Amber Map Pins */
+.pin-shape {
+  fill: #f59e0b;
+  stroke: #ffffff;
+  stroke-width: 1.2px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: bottom center;
+}
+
+.pin-dot {
+  fill: #ffffff;
+  pointer-events: none;
+}
+
+.globe-pin-group:hover .pin-shape,
+.globe-pin-group:focus-within .pin-shape {
+  fill: #ea580c; /* rich dark orange glow fill on hover */
+  filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.8));
+  transform: scale(1.15) translateY(-2px);
+}
+
+.pin-pulse {
+  fill: none;
+  stroke: #f59e0b;
+  stroke-width: 2px;
+  transform-origin: center;
+  animation: pinPulse 2.5s ease-out infinite;
+}
+
+@keyframes pinPulse {
+  0% {
+    transform: scale(0.6);
+    opacity: 1;
+    stroke-width: 3px;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+    stroke-width: 0.5px;
+  }
+}
+
+/* Soft glow circle around hovered country pin */
+.pin-hover-glow {
+  fill: rgba(245, 158, 11, 0.16);
+  stroke: rgba(245, 158, 11, 0.44);
+  stroke-width: 1.2px;
+  transform-origin: center;
+  animation: pinHoverGlowScale 2.2s infinite ease-in-out;
+}
+
+@keyframes pinHoverGlowScale {
+  0%, 100% { transform: scale(0.85); opacity: 0.7; }
+  50% { transform: scale(1.15); opacity: 1; }
+}
+
+/* Flight Paths routes */
+.flight-route {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.4);
+  stroke-width: 1.2px;
+  stroke-dasharray: 4, 4;
+}
+
+/* Drifting clouds styling */
+.globe-clouds-group {
+  animation: globeRotate 75s linear infinite;
+  pointer-events: none;
+}
+
+.globe-clouds-group path {
+  stroke: rgba(255, 255, 255, 0.5);
+  stroke-width: 5px;
+  filter: blur(0.5px);
+}
+
+/* Spherical Shading Overlay */
+.globe-shading {
+  mix-blend-mode: overlay;
+}
+
+/* Viewport-fixed Tooltip displaying flag, country, and cities available */
+.globe-tooltip-card.viewport-fixed {
+  position: fixed;
+  background: rgba(255, 255, 255, 0.94) !important;
+  backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.7) !important;
+  border-radius: 12px !important;
+  padding: 8px 12px !important;
+  color: #0f172a !important;
+  font-size: 12px;
+  z-index: 100000 !important;
+  pointer-events: none;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12) !important;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+  transition: opacity 0.15s ease-out;
+  animation: tooltipFadeInSmooth 0.18s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes tooltipFadeInSmooth {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tooltip-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tooltip-flag {
+  font-size: 15px;
+}
+
+.globe-tooltip-card.viewport-fixed h4 {
+  font-weight: 800;
+  font-size: 13px;
+  color: #0f172a;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.tooltip-cities-count {
+  font-weight: 600;
+  color: #64748b;
+  font-size: 11px;
+}
+
+/* Skyline Silhouettes of major landmarks decoration at bottom */
+.landmark-silhouettes {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 55px;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.silhouettes-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Spacing Improvements - consistent vertical section layouts */
+.dashboard-content {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.dashboard-section {
+  padding: 34px 0 !important;
+  border-bottom: 1px solid rgba(37, 99, 235, 0.06);
+}
+
+.dashboard-section:last-of-type {
+  border-bottom: none;
+}
+
+.section-header {
+  margin-bottom: 24px !important;
+}
+
+.section-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--primary-dark);
+  letter-spacing: -0.01em;
+}
+
+.section-desc {
+  font-size: 14.5px;
+  color: var(--text-light);
+  margin-top: 5px;
+}
+
+/* Nearby Destinations Grid */
+.nearby-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 26px;
+}
+
+.premium-card {
+  background: var(--white);
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.premium-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(37, 99, 235, 0.15);
+}
+
+.nearby-image-container {
+  position: relative;
+  width: 100%;
+  height: 210px;
+  overflow: hidden;
+}
+
+.nearby-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.premium-card:hover .nearby-image {
+  transform: scale(1.06);
+}
+
+.distance-badge {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  background: rgba(15, 23, 42, 0.72);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--white);
+  padding: 5px 10px;
+  border-radius: 99px;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.nearby-details {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.nearby-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.nearby-header h3 {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.nearby-rating {
+  font-size: 13px;
+  font-weight: 700;
+  color: #D97706;
+}
+
+.nearby-desc-short {
+  font-size: 13.5px;
+  color: var(--text-light);
+  line-height: 1.5;
+}
+
+/* Location Status & Request Cards */
+.location-loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 20px;
+  gap: 14px;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3.5px solid rgba(37, 99, 235, 0.12);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.location-permission-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 44px 24px;
+  max-width: 520px;
+  margin: 0 auto;
+  border-radius: 24px;
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-sm);
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+}
+
+.location-alert-icon {
+  font-size: 34px;
+  margin-bottom: 14px;
+  animation: float 3s ease-in-out infinite;
+}
+
+.location-permission-card h3 {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--primary-dark);
+  margin-bottom: 8px;
+}
+
+.location-permission-card p {
+  font-size: 13.5px;
+  color: var(--text-light);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.location-enable-btn {
+  background: var(--primary);
+  color: var(--white);
+  padding: 11px 26px;
+  border-radius: 99px;
+  font-size: 13.5px;
+  font-weight: 700;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.2);
+  transition: all 0.25s ease;
+}
+
+.location-enable-btn:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(37, 99, 235, 0.28);
+}
+
+/* AI Travel Quiz Card */
+.quiz-banner-card {
+  position: relative;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(96, 165, 250, 0.05)) !important;
+  border-radius: 24px !important;
+  border: 1px solid rgba(37, 99, 235, 0.15) !important;
+  padding: 40px !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  box-shadow: var(--shadow-md) !important;
+}
+
+.quiz-glow-effect {
+  position: absolute;
+  top: -150px;
+  right: -150px;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(96, 165, 250, 0.2) 0%, rgba(255, 255, 255, 0) 70%);
+  filter: blur(20px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.quiz-card-content {
+  position: relative;
+  z-index: 2;
+  max-width: 550px;
+}
+
+.quiz-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(37, 99, 235, 0.08);
+  color: var(--primary);
+  padding: 5px 12px;
+  border-radius: 99px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin-bottom: 14px;
+  border: 1px solid rgba(37, 99, 235, 0.1);
+}
+
+.quiz-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--primary-dark);
+  letter-spacing: -0.015em;
+  margin-bottom: 10px;
+}
+
+.quiz-description {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--text);
+  opacity: 0.9;
+  margin-bottom: 24px;
+}
+
+.quiz-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--primary);
+  color: var(--white);
+  padding: 12px 28px;
+  border-radius: 99px;
+  font-size: 14px;
+  font-weight: 700;
+  box-shadow: 0 8px 22px rgba(37, 99, 235, 0.18);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.quiz-action-btn:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(37, 99, 235, 0.28);
+}
+
+.quiz-action-btn svg {
+  transition: transform 0.25s ease;
+}
+
+.quiz-action-btn:hover svg {
+  transform: translateX(4px);
+}
+
+.quiz-visual-decor {
+  position: relative;
+  z-index: 2;
+  margin-left: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinning-globe {
+  color: var(--primary);
+  opacity: 0.16;
+  animation: spinSlow 30s linear infinite;
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Continue Planning Section */
+.continue-planning-card {
+  display: flex;
+  border-radius: 24px !important;
+  border: 1px solid var(--glass-border) !important;
+  background: var(--glass) !important;
+  overflow: hidden;
+  box-shadow: var(--shadow-md) !important;
+}
+
+.continue-dest-img {
+  width: 38%;
+  max-width: 400px;
+  min-height: 280px;
+  object-fit: cover;
+}
+
+.continue-content {
+  padding: 34px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+}
+
+.continue-tag {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #2563eb;
+  background: rgba(37, 99, 235, 0.08);
+  padding: 4px 10px;
+  border-radius: 99px;
+  align-self: flex-start;
+  margin-bottom: 10px;
+  letter-spacing: 0.05em;
+}
+
+.continue-content h2 {
+  font-size: 26px;
+  font-weight: 850;
+  color: var(--primary-dark);
+  margin-bottom: 16px;
+}
+
+/* Continue Progress Indicator */
+.continue-progress-wrapper {
+  margin-bottom: 24px;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.progress-bar-bg {
+  width: 100%;
+  height: 8px;
+  background: rgba(37, 99, 235, 0.08);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-light) 0%, var(--primary) 100%);
+  border-radius: 99px;
+  transition: width 0.8s ease-in-out;
+}
+
+.continue-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--primary);
+  color: var(--white);
+  padding: 11px 26px;
+  border-radius: 99px;
+  font-size: 13.5px;
+  font-weight: 700;
+  align-self: flex-start;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.16);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.continue-btn:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.24);
+}
+
+.continue-btn svg {
+  transition: transform 0.25s ease;
+}
+
+.continue-btn:hover svg {
+  transform: translateX(3px);
+}
+
+/* Trending Carousel Section */
+.carousel-container {
+  position: relative;
+  margin: 0 -24px;
+  padding: 10px 24px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.carousel-container::-webkit-scrollbar {
+  display: none;
+}
+
+.trending-carousel {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  padding-bottom: 10px;
+}
+
+.carousel-card {
+  width: 270px;
+  height: 350px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.carousel-card-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+}
+
+.carousel-card:hover .carousel-card-image {
+  transform: scale(1.06);
+}
+
+.carousel-card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.1) 0%, rgba(15, 23, 42, 0.72) 100%);
+  z-index: 2;
+  transition: background 0.3s ease;
+}
+
+.carousel-card:hover .carousel-card-overlay {
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.15) 0%, rgba(15, 23, 42, 0.8) 100%);
+}
+
+.carousel-card-content {
+  position: relative;
+  z-index: 3;
+  padding: 18px;
+  color: var(--white);
+}
+
+.carousel-card-top {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+}
+
+.rating-tag {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #FBBF24;
+  padding: 4px 10px;
+  border-radius: 99px;
+  font-size: 11.5px;
+  font-weight: 700;
+}
+
+.carousel-card-bottom h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.carousel-country {
+  font-size: 13px;
+  opacity: 0.85;
+  margin-bottom: 10px;
+}
+
+.carousel-mini-metrics {
+  display: flex;
+  gap: 10px;
+  font-size: 11.5px;
+  font-weight: 600;
+  opacity: 0.95;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Explore by Travel Style Section */
+.style-categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.category-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 8px;
+  border-radius: 16px !important;
+  border: 1px solid var(--border) !important;
+  background: var(--white) !important;
+  box-shadow: var(--shadow-sm) !important;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.category-btn:hover {
+  transform: translateY(-4px);
+  border-color: rgba(37, 99, 235, 0.2) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+.category-btn.active {
+  background: var(--primary) !important;
+  border-color: var(--primary) !important;
+  color: var(--white) !important;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.22) !important;
+}
+
+.category-emoji {
+  font-size: 26px;
+  margin-bottom: 6px;
+  transition: transform 0.3s ease;
+}
+
+.category-btn:hover .category-emoji {
+  transform: scale(1.12) rotate(5deg);
+}
+
+.category-label {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* Category Results */
+.category-results-wrapper {
+  background: rgba(37, 99, 235, 0.02);
+  border: 1px dashed rgba(37, 99, 235, 0.15);
+  border-radius: 20px;
+  padding: 24px;
+  animation: slideDown 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.category-results-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--primary-dark);
+  margin-bottom: 20px;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 20px;
+}
+
+.category-result-card {
+  height: 170px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.category-result-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.category-result-card:hover .category-result-img {
+  transform: scale(1.05);
+}
+
+.category-result-content {
+  position: relative;
+  z-index: 2;
+  padding: 14px;
+  background: linear-gradient(180deg, transparent 0%, rgba(15, 23, 42, 0.8) 100%);
+  color: var(--white);
+  width: 100%;
+}
+
+.category-result-content h4 {
+  font-size: 15.5px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.category-result-content p {
+  font-size: 11.5px;
+  opacity: 0.85;
+  margin-bottom: 6px;
+}
+
+.category-result-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10.5px;
+  font-weight: 600;
+  opacity: 0.9;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding-top: 6px;
+}
+
+.category-results-empty {
+  font-size: 14px;
+  color: var(--text-light);
+  text-align: center;
+  padding: 16px;
+}
+
+/* Atlas Preview Section */
+.atlas-preview-card {
+  position: relative;
+  background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 100%);
+  border-radius: 24px;
+  padding: 40px;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.22);
+}
+
+.atlas-glow-decor {
+  position: absolute;
+  bottom: -150px;
+  left: -150px;
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.25) 0%, rgba(255, 255, 255, 0) 70%);
+  filter: blur(25px);
+  pointer-events: none;
+}
+
+.atlas-preview-content {
+  position: relative;
+  z-index: 2;
+  max-width: 500px;
+}
+
+.atlas-ai-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(59, 130, 246, 0.16);
+  color: var(--primary-light);
+  padding: 5px 12px;
+  border-radius: 99px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 16px;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.atlas-preview-content h2 {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+}
+
+.atlas-helper-bold {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--primary-light);
+  margin-bottom: 10px;
+}
+
+.atlas-desc {
+  font-size: 14.5px;
+  line-height: 1.55;
+  opacity: 0.85;
+  margin-bottom: 26px;
+}
+
+.atlas-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--white);
+  color: #1E3A8A;
+  padding: 12px 28px;
+  border-radius: 99px;
+  font-size: 14px;
+  font-weight: 700;
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.atlas-btn:hover {
+  background: var(--primary-light);
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(96, 165, 250, 0.25);
+}
+
+.atlas-preview-decor {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-left: 30px;
+  width: 300px;
+}
+
+.atlas-chat-bubble {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  padding: 12px 16px;
+  border-radius: 16px 16px 16px 0 !important;
+  display: flex;
+  gap: 10px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15) !important;
+  animation: bubbleFloat 4s ease-in-out infinite;
+}
+
+.atlas-chat-bubble.secondary-bubble {
+  border-radius: 16px 16px 0 16px !important;
+  align-self: flex-end;
+  animation-delay: 2s;
+}
+
+@keyframes bubbleFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.atlas-chat-bubble .avatar {
+  font-size: 16px;
+}
+
+.atlas-chat-bubble .text {
+  font-size: 12px;
+  line-height: 1.45;
+  opacity: 0.9;
+}
+
+/* Around the World Countries Section */
+.countries-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.country-card {
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.country-card-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.country-card:hover .country-card-img {
+  transform: scale(1.06);
+}
+
+.country-card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.15) 0%, rgba(15, 23, 42, 0.72) 100%);
+  z-index: 2;
+  transition: background 0.3s ease;
+}
+
+.country-card:hover .country-card-overlay {
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.2) 0%, rgba(15, 23, 42, 0.8) 100%);
+}
+
+.country-card-content {
+  position: relative;
+  z-index: 3;
+  padding: 18px;
+  color: var(--white);
+}
+
+.country-card-content h3 {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 2px;
+}
+
+.country-count {
+  font-size: 12px;
+  opacity: 0.9;
+  background: rgba(255, 255, 255, 0.18);
+  padding: 3px 10px;
+  border-radius: 99px;
+  backdrop-filter: blur(4px);
+  display: inline-block;
+  margin-top: 4px;
+}
+
+/* Country Cities Modal */
+.country-cities-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+  animation: fadeIn 0.25s ease forwards;
+}
+
+.country-cities-modal {
+  width: 100%;
+  max-width: 900px;
+  max-height: 80vh;
+  background: rgba(255, 255, 255, 0.94) !important;
+  border: 1px solid var(--glass-border) !important;
+  box-shadow: 0 30px 70px rgba(15, 23, 42, 0.25) !important;
+  border-radius: 28px !important;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: modalScaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes modalScaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-header {
+  padding: 24px 34px;
+  border-bottom: 1px solid rgba(37, 99, 235, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(37, 99, 235, 0.01);
+}
+
+.modal-header h2 {
+  font-size: 24px;
+  font-weight: 850;
+  color: var(--primary-dark);
+}
+
+.modal-header p {
+  font-size: 13px;
+  color: var(--text-light);
+  margin-top: 4px;
+}
+
+.modal-close-btn {
+  background: rgba(15, 23, 42, 0.05);
+  color: var(--text);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.modal-close-btn:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: #EF4444;
+  transform: rotate(90deg);
+}
+
+.modal-content-grid {
+  padding: 24px 34px;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  flex: 1;
+}
+
+.modal-city-card {
+  height: 180px;
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.modal-city-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.modal-city-card:hover .modal-city-img {
+  transform: scale(1.05);
+}
+
+.modal-city-details {
+  position: relative;
+  z-index: 2;
+  padding: 14px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: linear-gradient(180deg, rgba(0,0,0,0.1) 30%, rgba(15, 23, 42, 0.8) 100%);
+  color: var(--white);
+}
+
+.modal-city-details h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.modal-city-metrics {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: 600;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding-top: 6px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255,255,255, 0.1); }
+  100% { box-shadow: 0 0 0 10px rgba(255,255,255, 0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .globe-banner-content {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .continue-planning-card {
+    flex-direction: column;
+  }
+  .continue-dest-img {
+    width: 100%;
+    max-width: 100%;
+    height: 220px;
+    min-height: auto;
+  }
+  .continue-content {
+    padding: 24px;
+  }
+  .quiz-banner-card {
+    flex-direction: column;
+    padding: 30px;
+    gap: 16px;
+    text-align: center;
+  }
+  .quiz-visual-decor {
+    margin-left: 0;
+  }
+  .atlas-preview-card {
+    flex-direction: column;
+    padding: 30px;
+    gap: 24px;
+  }
+  .atlas-preview-decor {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .globe-sphere-wrapper {
+    width: 290px;
+    height: 290px;
+  }
+  .dashboard-content {
+    padding: 0 16px;
+  }
+  .dashboard-section {
+    padding: 28px 0 !important;
+  }
+  .section-title {
+    font-size: 20px;
+  }
+  .style-categories {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .category-btn {
+    padding: 10px 4px;
+    border-radius: 12px !important;
+  }
+  .category-emoji {
+    font-size: 20px;
+  }
+  .category-label {
+    font-size: 10.5px;
+  }
+  .modal-content-grid {
+    padding: 16px;
+  }
+  .modal-header {
+    padding: 16px;
+  }
+}

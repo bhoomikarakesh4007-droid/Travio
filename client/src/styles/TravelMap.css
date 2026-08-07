@@ -1,0 +1,404 @@
+/* Premium Interactive Map Styles */
+
+/* Wrapper and Container */
+.premium-map-wrapper {
+  position: relative;
+  width: 100%;
+  height: 680px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(37, 99, 235, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.premium-map-wrapper.fullscreen-mode {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  border-radius: 0;
+  z-index: 9999;
+  border: none;
+}
+
+.premium-map-container {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* Hide default Leaflet controls since we create our own premium custom controls */
+.premium-map-container .leaflet-control-zoom,
+.premium-map-container .leaflet-control-attribution {
+  display: none !important;
+}
+
+/* Custom Map Controls Panel */
+.map-custom-controls {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000; /* Float over Leaflet */
+}
+
+.map-control-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 600;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Glassmorphism Styles based on Theme */
+.glass-light {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  color: #1e293b;
+}
+
+.glass-light:hover {
+  background: rgba(255, 255, 255, 0.85);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.15);
+}
+
+.glass-dark {
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  color: #f8fafc;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+
+.glass-dark:hover {
+  background: rgba(15, 23, 42, 0.88);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Floating Glassmorphic Info Card */
+.map-floating-card {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  width: 480px;
+  max-width: calc(100% - 48px);
+  border-radius: 20px;
+  padding: 16px;
+  z-index: 1000;
+  display: flex;
+  gap: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  animation: slideInUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.map-floating-card.card-dark {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+}
+
+.card-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.05);
+  color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.map-floating-card.card-dark .card-close-btn {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.card-close-btn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+/* Card Content Structure */
+.card-image-wrapper {
+  width: 140px;
+  height: 140px;
+  border-radius: 14px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-details {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+.card-tag-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.02em;
+}
+
+.badge-hotel {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+}
+
+.badge-restaurant {
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+}
+
+.badge-attraction {
+  background: rgba(236, 72, 153, 0.15);
+  color: #ec4899;
+}
+
+.badge-destination {
+  background: rgba(37, 99, 235, 0.15);
+  color: #2563eb;
+}
+
+.card-rating {
+  font-size: 0.85rem;
+  color: #f59e0b;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.card-name {
+  font-size: 1.15rem;
+  font-weight: 750;
+  line-height: 1.25;
+  margin: 6px 0 2px;
+  letter-spacing: -0.01em;
+}
+
+.card-distance {
+  font-size: 0.78rem;
+  color: #64748b;
+  margin-bottom: 6px;
+}
+
+.map-floating-card.card-dark .card-distance {
+  color: #94a3b8;
+}
+
+.card-desc {
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: #475569;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.map-floating-card.card-dark .card-desc {
+  color: #cbd5e1;
+}
+
+/* Card Action Buttons */
+.card-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.card-btn {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 650;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.card-btn-primary {
+  background: #2563eb;
+  color: white;
+}
+
+.card-btn-primary:hover {
+  background: #1d4ed8;
+}
+
+.card-btn-secondary {
+  background: rgba(37, 99, 235, 0.08);
+  color: #2563eb;
+  border: 1px solid rgba(37, 99, 235, 0.15);
+}
+
+.card-btn-secondary:hover {
+  background: rgba(37, 99, 235, 0.15);
+}
+
+.map-floating-card.card-dark .card-btn-secondary {
+  background: rgba(255, 255, 255, 0.06);
+  color: #f8fafc;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.map-floating-card.card-dark .card-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Locate Me GPS Pulse Dot */
+.locate-me-pulse-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+}
+
+.locate-me-pulse-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #2563eb;
+  border: 2px solid white;
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.8);
+  z-index: 2;
+}
+
+.locate-me-pulse-ring {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid #2563eb;
+  animation: gpsPulse 1.8s infinite ease-out;
+  opacity: 0;
+  z-index: 1;
+}
+
+/* Map Notification Toast */
+.map-toast {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  border-radius: 30px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  font-size: 0.88rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 1001;
+  animation: fadeInDown 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Custom Markers Animations & Styles */
+.custom-map-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.custom-map-marker:hover {
+  transform: scale(1.18);
+  z-index: 9999 !important;
+}
+
+/* Animations */
+@keyframes gpsPulse {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    transform: translate(-50%, -20px);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 780px) {
+  .premium-map-wrapper {
+    height: 520px;
+  }
+  
+  .map-floating-card {
+    width: calc(100% - 32px);
+    left: 16px;
+    bottom: 16px;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .card-image-wrapper {
+    width: 100%;
+    height: 110px;
+  }
+
+  .map-custom-controls {
+    top: 16px;
+    right: 16px;
+  }
+}

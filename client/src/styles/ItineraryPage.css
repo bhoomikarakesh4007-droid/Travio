@@ -1,0 +1,393 @@
+/* ==========================================
+            ITINERARY PAGE
+========================================== */
+
+.itinerary-page {
+    min-height: 100vh;
+    padding: 100px 6%;
+    background: linear-gradient(
+        180deg,
+        #F8FBFF 0%,
+        #F1F5F9 100%
+    );
+    position: relative;
+    overflow: hidden;
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* ==========================================
+        BACKGROUND BLURS
+========================================== */
+
+.itinerary-page::before {
+    content: "";
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(96, 165, 250, 0.15) 0%, rgba(96, 165, 250, 0) 70%);
+    top: -100px;
+    left: -100px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.itinerary-page::after {
+    content: "";
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(45, 212, 191, 0.1) 0%, rgba(45, 212, 191, 0) 70%);
+    bottom: -100px;
+    right: -100px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* ==========================================
+            HEADER
+========================================== */
+
+.itinerary-header {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    margin-bottom: 50px;
+}
+
+.itinerary-header h1 {
+    font-size: 36px;
+    color: var(--primary-dark, #1E3A8A);
+    margin-bottom: 12px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.itinerary-header p {
+    color: var(--text-light, #64748B);
+    font-size: 16px;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+/* ==========================================
+            TIMELINE
+========================================== */
+
+.itinerary-timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* A vertical connector line in the background */
+.itinerary-timeline::before {
+    content: "";
+    position: absolute;
+    left: 28px;
+    top: 40px;
+    bottom: 40px;
+    width: 2px;
+    background: repeating-linear-gradient(
+        to bottom,
+        #E2E8F0 0px,
+        #E2E8F0 8px,
+        transparent 8px,
+        transparent 16px
+    );
+    z-index: 1;
+}
+
+/* ==========================================
+            DAY CARD
+========================================== */
+
+.itinerary-day-card {
+    background: var(--white, #FFFFFF);
+    border-radius: var(--radius-md, 20px);
+    padding: 28px;
+    border: 1px solid var(--border, #E2E8F0);
+    box-shadow: var(--shadow-sm, 0 8px 20px rgba(37,99,235,.04));
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 2;
+    margin-left: 60px; /* Offset to clear the vertical timeline line */
+}
+
+.itinerary-day-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md, 0 15px 35px rgba(37,99,235,.08));
+}
+
+/* Node indicator dot overlaying the vertical line */
+.itinerary-day-card::before {
+    content: "";
+    position: absolute;
+    left: -40px;
+    top: 36px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--primary, #2563EB);
+    border: 4px solid var(--white, #FFFFFF);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+}
+
+.itinerary-day-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.itinerary-day-badge {
+    background: rgba(37, 99, 235, 0.08);
+    border: 1px solid rgba(37, 99, 235, 0.15);
+    border-radius: 12px;
+    padding: 10px 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 65px;
+    flex-shrink: 0;
+}
+
+.day-icon {
+    font-size: 22px;
+    margin-bottom: 2px;
+}
+
+.day-text {
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--primary, #2563EB);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+}
+
+.itinerary-day-meta {
+    flex: 1;
+}
+
+.itinerary-day-title {
+    font-size: 20px;
+    color: var(--primary-dark, #1E3A8A);
+    font-weight: 700;
+    margin: 0 0 6px 0;
+    line-height: 1.3;
+}
+
+.itinerary-day-time {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--text-light, #64748B);
+    font-weight: 600;
+}
+
+.itinerary-day-divider {
+    height: 1px;
+    background: #F1F5F9;
+    margin: 20px 0;
+}
+
+/* ==========================================
+            TIME PERIOD SECTIONS
+========================================== */
+
+.itinerary-day-periods {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.itinerary-period-section {
+    padding-left: 16px;
+    position: relative;
+    border-left: 3px solid #E2E8F0;
+    transition: border-color 0.2s ease;
+}
+
+.itinerary-period-section.morning {
+    border-left-color: #D97706; /* Amber */
+}
+
+.itinerary-period-section.afternoon {
+    border-left-color: #0D9488; /* Teal */
+}
+
+.itinerary-period-section.evening {
+    border-left-color: #EA580C; /* Orange-Red */
+}
+
+.itinerary-period-section.night {
+    border-left-color: #6366F1; /* Indigo */
+}
+
+.period-label-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.period-icon {
+    flex-shrink: 0;
+}
+
+.morning .period-icon, .morning .period-name {
+    color: #D97706;
+}
+
+.afternoon .period-icon, .afternoon .period-name {
+    color: #0D9488;
+}
+
+.evening .period-icon, .evening .period-name {
+    color: #EA580C;
+}
+
+.night .period-icon, .night .period-name {
+    color: #6366F1;
+}
+
+.period-name {
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.period-text {
+    margin: 0;
+    font-size: 14.5px;
+    color: var(--text, #334155);
+    line-height: 1.6;
+}
+
+/* ==========================================
+        SUMMARY CARD
+========================================== */
+
+.summary-card {
+    max-width: 800px;
+    margin: 60px auto 0;
+    background: var(--white, #FFFFFF);
+    border-radius: var(--radius-md, 20px);
+    padding: 30px;
+    border: 1px solid var(--border, #E2E8F0);
+    box-shadow: var(--shadow-sm, 0 8px 20px rgba(37,99,235,.04));
+    position: relative;
+    z-index: 2;
+}
+
+.summary-card h2 {
+    text-align: center;
+    color: var(--primary-dark, #1E3A8A);
+    margin: 0 0 24px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.summary-grid div {
+    background: #F8FAFC;
+    border: 1px solid #F1F5F9;
+    border-radius: 12px;
+    padding: 16px 12px;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.summary-grid div:hover {
+    background: #F1F5F9;
+}
+
+.summary-grid h3 {
+    color: var(--text-light, #64748B);
+    margin: 0 0 6px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.summary-grid p {
+    color: var(--primary, #2563EB);
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* ==========================================
+            RESPONSIVE
+========================================== */
+
+@media (max-width: 900px) {
+    .itinerary-header h1 {
+        font-size: 30px;
+    }
+    
+    .summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+}
+
+@media (max-width: 600px) {
+    .itinerary-page {
+        padding: 80px 20px;
+    }
+    
+    .itinerary-header h1 {
+        font-size: 24px;
+    }
+    
+    .itinerary-timeline::before {
+        display: none;
+    }
+    
+    .itinerary-day-card {
+        margin-left: 0;
+        padding: 20px;
+    }
+    
+    .itinerary-day-card::before {
+        display: none;
+    }
+    
+    .itinerary-day-header {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .itinerary-day-badge {
+        flex-direction: row;
+        gap: 8px;
+        padding: 6px 12px;
+        min-width: unset;
+        align-self: flex-start;
+    }
+    
+    .day-icon {
+        font-size: 16px;
+        margin-bottom: 0;
+    }
+    
+    .day-text {
+        font-size: 11px;
+    }
+    
+    .summary-grid {
+        grid-template-columns: 1fr;
+    }
+}

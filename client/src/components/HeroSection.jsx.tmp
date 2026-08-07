@@ -1,0 +1,444 @@
+import { useEffect } from "react";
+
+import {
+  Heart,
+  Share2,
+  MapPin,
+  Plane
+} from "lucide-react";
+
+import "../styles/HeroSection.css";
+
+import { useAuth } from "../context/AuthContext";
+import { useTravelSession } from "../context/TravelSessionContext";
+
+import {
+  addWishlist,
+  removeWishlist,
+  loadWishlist
+} from "../services/wishlistService";
+
+
+export default function HeroSection({destination}){
+
+
+const {currentUser}=useAuth();
+
+
+const {
+wishlist=[],
+setWishlist
+}=useTravelSession();
+
+
+const saved = Boolean(destination && wishlist.some((item) => item.id === destination.id));
+
+
+
+
+useEffect(()=>{
+
+
+async function getWishlist(){
+
+
+if(!currentUser)
+return;
+
+
+
+try{
+
+
+const data =
+await loadWishlist(currentUser.uid);
+
+
+setWishlist(data || []);
+
+
+}
+catch(err){
+
+console.log(err);
+
+}
+
+
+}
+
+
+
+getWishlist();
+
+
+},[currentUser, setWishlist]);
+
+
+
+
+
+
+if(!destination){
+
+
+return(
+
+<section className="hero-section">
+
+
+<div className="hero-overlay">
+
+
+<div className="hero-content">
+
+
+<h1>
+Welcome to Travio
+</h1>
+
+
+<p>
+Choose a destination to explore.
+</p>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+);
+
+
+}
+
+
+
+
+
+async function handleWishlist(){
+
+
+if(!currentUser){
+
+
+alert("Please login first.");
+
+return;
+
+
+}
+
+
+
+try{
+
+
+if(saved){
+
+
+await removeWishlist(
+currentUser.uid,
+destination
+);
+
+
+setWishlist(
+
+wishlist.filter(
+(item)=>
+item.id!==destination.id
+)
+
+);
+
+
+}
+else{
+
+
+await addWishlist(
+currentUser.uid,
+destination
+);
+
+
+setWishlist(
+[
+...wishlist,
+destination
+]
+);
+
+
+}
+
+
+
+
+
+}
+catch(err){
+
+console.log(err);
+
+}
+
+
+}
+
+
+
+
+
+function shareDestination(){
+
+
+if(navigator.share){
+
+
+navigator.share({
+
+title:
+destination.title,
+
+text:
+`Explore ${destination.title} with Travio`,
+
+url:
+window.location.href
+
+
+});
+
+
+}
+else{
+
+
+navigator.clipboard.writeText(
+window.location.href
+);
+
+
+alert(
+"Link copied!"
+);
+
+
+}
+
+
+}
+
+
+
+
+
+return(
+
+<section
+
+className="hero-section"
+
+style={{
+
+backgroundImage:
+`url(${destination.hero})`
+
+}}
+
+>
+
+
+<div className="hero-overlay">
+
+
+
+<div className="hero-content">
+
+
+
+<span className="hero-country">
+
+
+<MapPin size={18}/>
+
+
+{destination.country}
+
+
+</span>
+
+
+
+
+
+<h1>
+
+{destination.title}
+
+</h1>
+
+
+
+
+
+<p>
+
+{destination.description}
+
+</p>
+
+
+
+
+
+
+
+<div className="hero-info">
+
+
+
+<div className="glass-box">
+
+⭐ Rating
+
+<strong>
+
+{destination.rating || "4.9"}
+
+</strong>
+
+</div>
+
+
+
+
+
+<div className="glass-box">
+
+💰 Currency
+
+<strong>
+
+{destination.currency}
+
+</strong>
+
+
+</div>
+
+
+
+
+
+<div className="glass-box">
+
+
+<Plane size={18}/>
+
+
+<strong>
+
+{destination.airport}
+
+</strong>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+<div className="hero-buttons">
+
+
+
+<button
+
+className="wishlist-btn"
+
+onClick={handleWishlist}
+>
+
+
+<Heart
+
+size={20}
+
+fill={
+saved
+?"white"
+:"none"
+}
+
+/>
+
+
+{
+saved
+?
+"Saved"
+:
+"Wishlist"
+}
+
+
+
+</button>
+
+
+
+
+
+
+<button
+
+className="share-btn"
+
+onClick={shareDestination}
+>
+
+
+<Share2 size={20}/>
+
+
+Share
+
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+</section>
+
+);
+
+
+}

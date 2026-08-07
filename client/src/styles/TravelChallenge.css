@@ -1,0 +1,171 @@
+/* Travel Challenge Styles */
+.travel-challenge-section {
+  width: min(1160px, calc(100% - 48px));
+  margin-inline: auto;
+  margin-top: 36px;
+  margin-bottom: 36px;
+}
+
+.challenge-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 24px;
+  padding: 36px;
+  box-shadow: 0 10px 30px rgba(31, 38, 135, 0.05);
+  overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.challenge-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(31, 38, 135, 0.08);
+  border-color: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.challenge-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.challenge-trophy {
+  font-size: 28px;
+}
+
+.challenge-header h2 {
+  font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+  font-weight: 800;
+  color: #1e293b;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.challenge-desc {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #475569;
+  margin-bottom: 24px;
+}
+
+.reward-container {
+  background: rgba(79, 108, 245, 0.05);
+  border: 1px solid rgba(79, 108, 245, 0.1);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.reward-badge-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: #5369c9;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.reward-badge-icon {
+  font-size: 16px;
+}
+
+.reward-display {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.reward-emoji {
+  font-size: 32px;
+}
+
+.reward-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.challenge-btn {
+  width: 100%;
+  max-width: 250px;
+  padding: 14px 28px;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 14px;
+  border: none;
+  background: #4f6cf5;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(79, 108, 245, 0.25);
+  transition: all 0.3s ease;
+}
+
+.challenge-btn:hover {
+  background: #3c54d9;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(79, 108, 245, 0.35);
+}
+
+.challenge-btn.completed {
+  background: #10b981;
+  color: white;
+  cursor: default;
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.25);
+  transform: none;
+}
+
+/* Success Animation */
+.confetti-animation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(16, 185, 129, 0.08);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #10b981;
+  z-index: 10;
+  backdrop-filter: blur(4px);
+  animation: fadeOutChallenge 1.5s forwards;
+}
+
+@keyframes fadeOutChallenge {
+  0% {
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@media (max-width: 780px) {
+  .travel-challenge-section {
+    width: min(100% - 30px, 1160px);
+  }
+  .challenge-card {
+    padding: 24px;
+  }
+  .challenge-btn {
+    max-width: 100%;
+  }
+}

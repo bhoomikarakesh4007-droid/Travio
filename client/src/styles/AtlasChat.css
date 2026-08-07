@@ -1,0 +1,726 @@
+/* ==========================================
+            ATLAS CHAT PANEL
+========================================== */
+
+.atlas-chat-panel {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 380px;
+    height: 600px;
+    max-height: calc(100vh - 160px); /* Leave plenty of space for the sticky Navbar at top */
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(25px) saturate(120%);
+    -webkit-backdrop-filter: blur(25px) saturate(120%);
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    border-radius: 24px;
+    box-shadow: 0 30px 60px rgba(37, 99, 235, 0.18), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    z-index: 999; /* Below sticky navbar (1000) but above everything else */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                left 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                top 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: bottom right;
+}
+
+/* Disable top/left lag transition while dragging */
+.atlas-chat-panel.dragging {
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: grabbing;
+}
+
+/* Open / Closed states */
+.atlas-chat-panel.closed {
+    transform: translateX(120%) scale(0.9);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.atlas-chat-panel.open {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* Minimized state */
+.atlas-chat-panel.minimized {
+    height: 68px;
+    max-height: 68px;
+    box-shadow: 0 8px 30px rgba(37, 99, 235, 0.1);
+}
+
+/* ==========================================
+            CHAT HEADER
+========================================== */
+.atlas-chat-header {
+    padding: 16px 20px;
+    background: rgba(255, 255, 255, 0.4);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: grab;
+}
+
+.atlas-chat-header:active {
+    cursor: grabbing;
+}
+
+.atlas-chat-title-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.atlas-chat-icon-wrapper {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
+}
+
+.atlas-chat-title-info h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--primary-dark);
+    line-height: 1.2;
+}
+
+.atlas-chat-title-info p {
+    margin: 2px 0 0;
+    font-size: 11px;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.atlas-chat-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.atlas-chat-btn {
+    border: none;
+    background: rgba(255, 255, 255, 0.5);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-light);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    padding: 0;
+}
+
+.atlas-chat-btn:hover {
+    background: var(--primary);
+    color: white;
+    transform: scale(1.05);
+}
+
+.atlas-chat-btn:active {
+    transform: scale(0.95);
+}
+
+/* ==========================================
+            CHAT BODY / MESSAGES
+========================================== */
+.atlas-chat-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background: rgba(248, 251, 255, 0.4);
+    transition: opacity 0.3s ease;
+}
+
+.atlas-chat-panel.minimized .atlas-chat-body {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Message bubbles */
+.atlas-message {
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+    animation: atlas-fade-up 0.3s ease forwards;
+}
+
+.atlas-message.ai {
+    align-self: flex-start;
+}
+
+.atlas-message.user {
+    align-self: flex-end;
+}
+
+.atlas-message-bubble-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+}
+
+.atlas-message.user .atlas-message-bubble-container {
+    flex-direction: row-reverse;
+}
+
+/* Copy to clipboard button */
+.atlas-copy-btn {
+    border: none;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-light);
+    cursor: pointer;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 6px rgba(37, 99, 235, 0.08);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    padding: 0;
+}
+
+.atlas-message-bubble-container:hover .atlas-copy-btn {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.atlas-copy-btn:hover {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
+}
+
+.atlas-copy-btn.copied {
+    background: #10B981 !important;
+    color: white !important;
+    opacity: 1 !important;
+    transform: scale(1) !important;
+}
+
+.atlas-message-bubble {
+    padding: 12px 16px;
+    font-size: 14px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+}
+
+.atlas-message.ai .atlas-message-bubble {
+    background: white;
+    color: var(--text);
+    border-radius: 18px;
+    border-bottom-left-radius: 4px;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.05);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.atlas-message.user .atlas-message-bubble {
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: white;
+    border-radius: 18px;
+    border-bottom-right-radius: 4px;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.15);
+}
+
+.atlas-message-time {
+    font-size: 10px;
+    color: var(--text-light);
+    margin-top: 4px;
+    align-self: flex-start;
+    padding-left: 4px;
+}
+
+.atlas-message.user .atlas-message-time {
+    align-self: flex-end;
+    padding-right: 4px;
+}
+
+/* ==========================================
+            SUGGESTIONS
+========================================== */
+.atlas-chat-suggestions {
+    padding: 0 20px 10px;
+    background: rgba(248, 251, 255, 0.4);
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    transition: opacity 0.3s ease;
+}
+
+.atlas-chat-panel.minimized .atlas-chat-suggestions {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.atlas-suggestion-pill {
+    border: 1px solid rgba(37, 99, 235, 0.15);
+    background: white;
+    color: var(--primary);
+    padding: 6px 12px;
+    border-radius: 14px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 6px rgba(37, 99, 235, 0.04);
+}
+
+.atlas-suggestion-pill:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.1);
+}
+
+/* ==========================================
+            INPUT AREA
+========================================== */
+.atlas-chat-input-area {
+    padding: 16px 20px;
+    background: white;
+    border-top: 1px solid rgba(226, 232, 240, 0.8);
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    transition: opacity 0.3s ease;
+}
+
+.atlas-chat-panel.minimized .atlas-chat-input-area {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.atlas-chat-input-area textarea {
+    flex: 1;
+    border: 1px solid var(--border);
+    padding: 12px 16px;
+    border-radius: 16px;
+    font-size: 14px;
+    background: var(--background-soft);
+    color: var(--text);
+    transition: all 0.3s ease;
+    resize: none;
+    height: 44px;
+    font-family: inherit;
+    line-height: 1.4;
+    overflow-y: auto;
+}
+
+.atlas-chat-input-area textarea:focus {
+    border-color: var(--primary-light);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.atlas-chat-send-btn {
+    border: none;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: white;
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0;
+}
+
+.atlas-chat-send-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.atlas-chat-send-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ==========================================
+            SCROLLBAR STYLING
+========================================== */
+.atlas-chat-body::-webkit-scrollbar {
+    width: 5px;
+}
+
+.atlas-chat-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.atlas-chat-body::-webkit-scrollbar-thumb {
+    background: rgba(37, 99, 235, 0.15);
+    border-radius: 10px;
+}
+
+.atlas-chat-body::-webkit-scrollbar-thumb:hover {
+    background: rgba(37, 99, 235, 0.3);
+}
+
+/* ==========================================
+            FADE KEYFRAMES
+========================================== */
+@keyframes atlas-fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================
+            RESPONSIVE MEDIA QUERIES
+========================================== */
+@media (max-width: 480px) {
+    .atlas-chat-panel {
+        bottom: 16px;
+        right: 16px;
+        left: 16px;
+        width: auto;
+        height: 500px;
+        max-height: calc(100vh - 140px); /* Leave space for sticky mobile navbar */
+    }
+
+    .atlas-chat-panel.closed {
+        transform: translateY(120%) scale(0.95);
+    }
+
+    .atlas-chat-panel.minimized {
+        height: 64px;
+        max-height: 64px;
+    }
+}
+
+/* ==========================================
+            TYPING & SPINNER ANIMATIONS
+========================================== */
+.atlas-typing-indicator {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    height: 18px;
+}
+
+.atlas-typing-indicator span {
+    width: 8px;
+    height: 8px;
+    background: var(--text-light);
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: atlas-bounce 1.4s infinite ease-in-out both;
+}
+
+.atlas-typing-indicator span:nth-child(1) {
+    animation-delay: -0.32s;
+}
+
+.atlas-typing-indicator span:nth-child(2) {
+    animation-delay: -0.16s;
+}
+
+@keyframes atlas-bounce {
+    0%, 80%, 100% {
+        transform: scale(0);
+    }
+    40% {
+        transform: scale(1);
+    }
+}
+
+.atlas-spinner {
+    animation: atlas-spin 1s linear infinite;
+}
+
+@keyframes atlas-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ==========================================
+          PHASE 2 COMPANION ADDITIONS
+========================================== */
+
+.cycling-progress-text {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-light);
+    margin-bottom: 6px;
+    letter-spacing: 0.02em;
+    animation: atlas-pulse-opacity 2s infinite ease-in-out;
+}
+
+@keyframes atlas-pulse-opacity {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
+.animate-fade-in {
+    animation: atlas-fade-in-up 0.3s ease-out forwards;
+}
+
+@keyframes atlas-fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================
+          PHASE 3 INTERACTIVE CARDS
+========================================== */
+
+.atlas-bubble-rich-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.atlas-chat-text-p {
+    margin-bottom: 6px;
+    line-height: 1.5;
+}
+
+.atlas-chat-card {
+    margin: 8px 0;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 14px;
+    border: 1px solid rgba(37, 99, 235, 0.1);
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.04);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    animation: atlas-fade-in-up 0.3s ease-out forwards;
+}
+
+.atlas-chat-card:hover {
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.08);
+    border-color: rgba(37, 99, 235, 0.2);
+}
+
+.atlas-card-img {
+    width: 100%;
+    max-height: 100px;
+    object-fit: cover;
+    border-bottom: 1px solid rgba(37, 99, 235, 0.06);
+}
+
+.atlas-card-body {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.atlas-card-title {
+    margin: 0 0 4px;
+    font-size: 13px;
+    font-weight: 750;
+    color: var(--text-dark);
+}
+
+.atlas-card-country {
+    font-size: 11px;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.atlas-card-desc {
+    margin: 0 0 10px;
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+.atlas-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+}
+
+.atlas-card-meta span {
+    background: rgba(37, 99, 235, 0.05);
+    padding: 2px 6px;
+    border-radius: 6px;
+}
+
+.atlas-card-actions {
+    display: flex;
+    gap: 6px;
+}
+
+.atlas-card-btn {
+    border: none;
+    padding: 6px 10px;
+    font-size: 10px;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.atlas-card-btn.primary {
+    background: var(--primary);
+    color: #ffffff;
+}
+
+.atlas-card-btn.primary:hover:not(:disabled) {
+    background: var(--primary-dark);
+}
+
+.atlas-card-btn.secondary {
+    background: rgba(37, 99, 235, 0.04);
+    color: var(--primary);
+    border: 1px solid rgba(37, 99, 235, 0.08);
+}
+
+.atlas-card-btn.secondary:hover {
+    background: rgba(37, 99, 235, 0.08);
+}
+
+.atlas-card-btn.active, .atlas-card-btn.primary.active {
+    background: #10b981 !important;
+    color: #ffffff !important;
+    border-color: #10b981 !important;
+    cursor: default;
+}
+
+/* Checklist layout */
+.atlas-packing-checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 8px 0 12px;
+}
+
+.atlas-packing-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-dark);
+    cursor: pointer;
+}
+
+.atlas-packing-item input[type="checkbox"] {
+    width: 13px;
+    height: 13px;
+    cursor: pointer;
+}
+
+.checked-item {
+    text-decoration: line-through;
+    color: var(--text-light);
+}
+
+/* Timeline Layout */
+.atlas-itinerary-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 8px 0 12px;
+    border-left: 2px solid rgba(37, 99, 235, 0.1);
+    padding-left: 10px;
+}
+
+.timeline-day {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    position: relative;
+}
+
+.timeline-day::before {
+    content: "";
+    position: absolute;
+    left: -14px;
+    top: 4px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--primary);
+}
+
+.timeline-day-header {
+    font-size: 9px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--primary);
+}
+
+.timeline-day-activity {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-dark);
+    line-height: 1.3;
+}
+
+/* Floating Toast Confirmation */
+.atlas-chat-toast {
+    position: absolute;
+    top: 78px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(15, 23, 42, 0.92);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    padding: 6px 14px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    z-index: 1000;
+    pointer-events: none;
+    text-align: center;
+    width: max-content;
+}
+
+

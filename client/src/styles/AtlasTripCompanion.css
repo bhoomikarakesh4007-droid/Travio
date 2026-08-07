@@ -1,0 +1,152 @@
+/* C:\Travio\client\src\styles\AtlasTripCompanion.css */
+
+.atlas-companion-card {
+    background: var(--white, #FFFFFF);
+    border-radius: var(--radius-md, 20px);
+    border: 1px solid var(--border, #E2E8F0);
+    box-shadow: var(--shadow-sm, 0 8px 20px rgba(37,99,235,.04));
+    padding: 32px;
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    margin: 50px auto 40px;
+    max-width: 800px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 2;
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+.atlas-companion-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md, 0 15px 35px rgba(37,99,235,.08));
+}
+
+.atlas-card-left {
+    flex-shrink: 0;
+}
+
+.atlas-avatar-container {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #F0F7FF;
+    border: 1px solid #E2E8F0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.atlas-companion-avatar-svg {
+    filter: drop-shadow(0 4px 6px rgba(37, 99, 235, 0.15));
+}
+
+.online-badge {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 14px;
+    height: 14px;
+    background: #10B981;
+    border: 2px solid #FFFFFF;
+    border-radius: 50%;
+}
+
+.atlas-card-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.atlas-card-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(37, 99, 235, 0.08);
+    border: 1px solid rgba(37, 99, 235, 0.15);
+    border-radius: 99px;
+    padding: 6px 14px;
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--primary, #2563EB);
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.badge-sparkle {
+    color: var(--primary, #2563EB);
+}
+
+.atlas-card-right h2 {
+    margin: 0 0 8px 0;
+    font-size: 22px;
+    color: var(--primary-dark, #1E3A8A);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.atlas-card-right p {
+    margin: 0 0 20px 0;
+    font-size: 14.5px;
+    color: var(--text-light, #64748B);
+    line-height: 1.6;
+}
+
+.open-atlas-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--primary, #2563EB) 0%, var(--primary-dark, #1E3A8A) 100%);
+    color: #FFFFFF;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 24px;
+    font-size: 14.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.open-atlas-btn:hover {
+    background: linear-gradient(135deg, var(--primary-light, #60A5FA) 0%, var(--primary, #2563EB) 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3);
+}
+
+.open-atlas-btn svg {
+    transition: transform 0.2s ease;
+}
+
+.open-atlas-btn:hover svg {
+    transform: scale(1.1);
+}
+
+/* ==========================================
+            RESPONSIVE
+========================================== */
+
+@media (max-width: 600px) {
+    .atlas-companion-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 24px;
+        gap: 16px;
+    }
+    
+    .atlas-card-right {
+        align-items: center;
+    }
+    
+    .atlas-card-right h2 {
+        font-size: 18px;
+    }
+    
+    .atlas-card-right p {
+        font-size: 13.5px;
+    }
+}

@@ -1,0 +1,194 @@
+/* ==========================================
+            LOADING PAGE
+========================================== */
+
+.loading-page{
+
+    width:100%;
+
+    height:100vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:linear-gradient(
+        180deg,
+        #F8FBFF 0%,
+        #EEF7FF 50%,
+        #EAF6FF 100%
+    );
+
+    overflow:hidden;
+
+}
+
+/* ==========================================
+            LOGO
+========================================== */
+
+.loading-logo{
+
+    width:95px;
+
+    height:95px;
+
+    object-fit:contain;
+
+    margin-bottom:30px;
+
+    animation:logoFade .8s ease;
+
+}
+
+/* ==========================================
+            TEXT
+========================================== */
+
+.loading-page h2{
+
+    margin:0;
+
+    font-size:22px;
+
+    font-weight:600;
+
+    color:#1E3A8A;
+
+    letter-spacing:.5px;
+
+}
+
+/* ==========================================
+            BAR
+========================================== */
+
+.loading-bar{
+
+    width:260px;
+
+    height:7px;
+
+    margin-top:35px;
+
+    background:#DCEAFD;
+
+    border-radius:999px;
+
+    overflow:hidden;
+
+}
+
+.loading-progress{
+
+    width:100%;
+
+    height:100%;
+
+    background:linear-gradient(
+        90deg,
+        #2563EB,
+        #60A5FA
+    );
+
+    transform-origin:left;
+
+    animation:loading 2s linear forwards;
+
+}
+
+/* ==========================================
+            ANIMATION
+========================================== */
+
+@keyframes loading{
+
+    from{
+
+        transform:scaleX(0);
+
+    }
+
+    to{
+
+        transform:scaleX(1);
+
+    }
+
+}
+
+@keyframes logoFade{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ==========================================
+            RESPONSIVE
+========================================== */
+
+@media(max-width:768px){
+
+.loading-logo{
+
+width:80px;
+
+height:80px;
+
+}
+
+.loading-page h2{
+
+font-size:20px;
+
+}
+
+.loading-bar{
+
+width:220px;
+
+}
+
+}
+
+@media(max-width:480px){
+
+.loading-logo{
+
+width:70px;
+
+height:70px;
+
+}
+
+.loading-page h2{
+
+font-size:18px;
+
+}
+
+.loading-bar{
+
+width:180px;
+
+}
+
+}
