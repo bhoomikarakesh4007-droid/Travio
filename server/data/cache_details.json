@@ -376,5 +376,32 @@
       "Tap water in Reykjavik is among the purest in the world; skip bottled water and carry a reusable bottle to save money and reduce plastic waste."
     ],
     "timezone": "GMT"
+  },
+  "queenstown": {
+    "about": [
+      "Nestled on the shores of the crystal-clear Lake Wakatipu and set against the jagged, snow-dusted peaks of The Remarkables, Queenstown serves as the undisputed adventure capital of the world. This stunning South Island town offers a dramatic alpine landscape that serves as a playground for thrill-seekers and nature lovers alike. With its pristine glacial waters and soaring mountain vistas, the region provides an unparalleled backdrop for both high-octane expeditions and tranquil scenic exploration, making it a quintessential destination for global travelers.",
+      "The history of Queenstown is rooted in the 1860s Otago Gold Rush, which transformed a quiet pastoral settlement into a bustling hub of prospectors and pioneers. Today, the local culture remains deeply influenced by the 'kiwi' spirit—a blend of laid-back friendliness and rugged resilience. Visitors should respect the local 'Leave No Trace' ethos, which is paramount in preserving the town's stunning natural environment. While English is the primary language, learning a few phrases of Te Reo Māori is highly appreciated, and locals value a relaxed, unpretentious demeanor in all social interactions.",
+      "Queenstown radiates an electric, cosmopolitan energy that belies its small-town charm, with a nightlife scene that thrives alongside its daytime adrenaline pursuits. Whether you are riding the Skyline Queenstown Luge for panoramic views, embarking on a flight to the majestic Milford Sound, or taking the plunge at the Nevis Bungee Jump, the variety of activities is limitless. Interestingly, Queenstown serves as the gateway to the Central Otago wine region, renowned globally for its exceptional Pinot Noir. The town's unique 'vibe' is a harmonious collision of extreme sports adrenaline and the refined sophistication of alpine resort living."
+    ],
+    "bestTimeToVisit": "The best time to visit is during the summer months from December to February for hiking, or June to August for world-class skiing and winter festivities.",
+    "averageDailyBudget": "$150 - $300 USD per day, depending on the number of adventure activities booked.",
+    "localTransport": "The town center is highly walkable, while local 'Orbus' services, water taxis, and ride-sharing apps provide easy access to surrounding areas like Frankton and Arrowtown.",
+    "safetyLevel": "Queenstown is exceptionally safe with very low crime rates; visitors should primarily focus on adventure activity safety protocols and dressing for unpredictable alpine weather.",
+    "emergencyNumber": "111",
+    "famousFoods": [
+      "Fergburger",
+      "Lamb Cutlets",
+      "Hokey Pokey Ice Cream",
+      "Green-lipped Mussels",
+      "Central Otago Pinot Noir"
+    ],
+    "travelTips": [
+      "New Zealand uses the New Zealand Dollar (NZD) and is largely a cashless society where tap-to-pay (PayWave) is accepted everywhere.",
+      "Beat the massive crowds by booking adventure activities for early morning slots and dining at restaurants during off-peak hours.",
+      "Download the 'AllTrails' app for hiking navigation and check 'MetService' for hyper-local, accurate weather forecasts before heading into the mountains.",
+      "Dress in versatile layers, as the alpine weather can change from glorious sunshine to freezing temperatures in a matter of hours.",
+      "When ordering the iconic Fergburger, call ahead to place your order to avoid the notoriously long queues that wrap around the block."
+    ],
+    "timezone": "GMT+12"
   }
 }

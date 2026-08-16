@@ -442,5 +442,77 @@
       "description": "Enjoy a final authentic Japanese breakfast near Tokyo Grand Stay and do some last-minute gift shopping in a quiet local arcade. Transfer to the airport in the afternoon for your flight back to Bengaluru, concluding your restful spring getaway.",
       "icon": "🛍️"
     }
+  ],
+  "queenstown_10_comfort_relaxation_friends_winter": [
+    {
+      "day": "Day 1",
+      "title": "Departure from Bengaluru & Arrival in Queenstown",
+      "time": "06:30 AM",
+      "description": "Depart Bengaluru (BLR) for a long-haul flight to Queenstown (ZQN). Upon arrival, take a private transfer to the Queenstown Grand Stay for check-in, enjoy a local cafe lunch, and take a gentle stroll along the waterfront to admire the snow-capped Remarkables.",
+      "icon": "✈️"
+    },
+    {
+      "day": "Day 2",
+      "title": "Lakeside Relaxation & Gentle Views",
+      "time": "10:00 AM",
+      "description": "Start with a leisurely breakfast at an authentic local cafe before heading to the Queenstown Gardens for a relaxing walk. Spend the afternoon soaking in views of Lake Wakatipu with hot coffee in hand.",
+      "icon": "☕"
+    },
+    {
+      "day": "Day 3",
+      "title": "Skyline Gondola & Starlit Dinner",
+      "time": "11:00 AM",
+      "description": "Ride the Skyline Gondola for panoramic winter vistas without the strenuous climb. Enjoy a slow-paced afternoon at the summit deck followed by a cozy dinner at a local village cafe.",
+      "icon": "🚠"
+    },
+    {
+      "day": "Day 4",
+      "title": "Onsen Hot Pools Experience",
+      "time": "09:00 AM",
+      "description": "Indulge in a premium soak at the Onsen Hot Pools, overlooking the Shotover River. This remains the ultimate winter relaxation experience for you and your friends.",
+      "icon": "🧖"
+    },
+    {
+      "day": "Day 5",
+      "title": "Scenic Cruise on the TSS Earnslaw",
+      "time": "10:30 AM",
+      "description": "Board the historic TSS Earnslaw steamship for a calm, scenic cruise across the lake. Spend the rest of the day relaxing in the cabin or visiting the farmyard at Walter Peak.",
+      "icon": "🚢"
+    },
+    {
+      "day": "Day 6",
+      "title": "Arrowtown Heritage & Cafe Culture",
+      "time": "10:00 AM",
+      "description": "Take a short drive to the historic village of Arrowtown to explore gold-mining heritage sites. Spend the afternoon hopping between charming local cafes for authentic Kiwi pastries.",
+      "icon": "🏡"
+    },
+    {
+      "day": "Day 7",
+      "title": "Milford Sound Sightseeing Flight",
+      "time": "08:00 AM",
+      "description": "Opt for a scenic flight to Milford Sound to witness the dramatic winter waterfalls and fjords from above. Return by afternoon for a quiet, relaxing evening at the hotel.",
+      "icon": "🛩️"
+    },
+    {
+      "day": "Day 8",
+      "title": "Wine Tasting in Gibbston Valley",
+      "time": "11:00 AM",
+      "description": "Travel to the Gibbston Valley for a relaxed wine tour featuring the region's famous Pinot Noir. Enjoy a long, multi-course lunch paired with local wines in a rustic cafe setting.",
+      "icon": "🍷"
+    },
+    {
+      "day": "Day 9",
+      "title": "Art Galleries & Boutique Shopping",
+      "time": "10:00 AM",
+      "description": "Spend the final full day exploring Queenstown’s local art galleries and boutique stores at a leisurely pace. Conclude with a farewell dinner at a favorite local cafe.",
+      "icon": "🎨"
+    },
+    {
+      "day": "Day 10",
+      "title": "Departure from Queenstown",
+      "time": "09:00 AM",
+      "description": "Enjoy one final breakfast at the hotel, complete your checkout, and take a transfer to Queenstown Airport for your return journey to Bengaluru. Reflect on your relaxing winter getaway as you head home.",
+      "icon": "🛫"
+    }
   ]
 }
